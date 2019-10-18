@@ -28,7 +28,7 @@ public class Persona {
 	private String dui;
 	@Column(name = "fechaNacimiento")
 	@Temporal(TemporalType.DATE)
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	@Column(name = "direccion")
 	private String direccion;
 	@Column(name = "usuario")
@@ -78,11 +78,11 @@ public class Persona {
 		this.dui = dui;
 	}
 	
-	public Date getFechaNacimiento() {
+	public String getFechaNacimiento() {
 		return fechaNacimiento;
 	}
 	
-	public void setFechaNacimiento(Date fechaNacimiento) {
+	public void setFechaNacimiento(String fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	
