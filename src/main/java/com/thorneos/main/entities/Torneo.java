@@ -19,10 +19,10 @@ public class Torneo {
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "fecha_inicio")
-	@Temporal(TemporalType.DATE)
+	
 	private String fecha_inicio;
 	@Column(name = "fecha_fin")
-	@Temporal(TemporalType.DATE)
+	
 	private String fecha_fin;
 	@Column(name = "id_disciplina")
 	private int id_disciplina;

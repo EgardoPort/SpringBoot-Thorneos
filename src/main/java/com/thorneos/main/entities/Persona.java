@@ -27,7 +27,7 @@ public class Persona {
 	@Column(name = "dui")
 	private String dui;
 	@Column(name = "fechaNacimiento")
-	@Temporal(TemporalType.DATE)
+	
 	private String fechaNacimiento;
 	@Column(name = "direccion")
 	private String direccion;

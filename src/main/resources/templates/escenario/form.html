@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Formulario</title>
+</head>
+<body>
+	<form action="/escenario/save" method="POST">
+		<input type="hidden" name="id" th:value="${es.id}">
+		<table>
+			<tr>
+				<td>Direccion</td>
+				<td><input type="text" name="direccion" th:value="${es.direccion}" required></td>
+			</tr>
+			<tr>
+				<td>Nombre</td>
+				<td><input type="text" name="nombre" th:value="${es.nombre}" required></td>
+			</tr>
+			<tr>
+				<td>Hora Reserva</td>
+				<td><input  type="text" name="hora_reserva" th:value="${es.hora_reserva}" ></td>				
+			</tr>
+			<tr>
+				<td>Fecha Reserva</td>
+				<td><input  type="text" name="fecha_reserva" th:value="${es.fecha_reserva}" ></td>				
+			</tr>
+			<tr>
+				<td>Estado</td>
+				<td><select name="estadoesce" th:value="${es.estadoesce}">
+						<option value="Disponible">Disponible</option>
+						<option value="Reservado">Reservado</option>
+						<option value="En mantenimiento">En mantenimiento</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Guardar"/></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

@@ -1,7 +1,6 @@
 package com.thorneos.main.entities;
 
-import java.sql.Time;
-import java.util.Date;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +17,7 @@ public class Escenario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column (name="id")
-	private int id;
+	private Integer id;
 
 	@Column (name="direccion")
 	private String direccion;
@@ -27,20 +26,21 @@ public class Escenario {
 	private String nombre;
 	
 	@Column (name="hora_reserva")
-	private Time hora_reserva;
+	private String hora_reserva;
 	
 	@DateTimeFormat(pattern = "YYYY-MM-dd")
 	@Column (name="fecha_reserva")
-	private Date fecha_reserva;
+	private String fecha_reserva;
 	
 	@Column (name="estadoesce")
 	private String estadoesce;
 
-	public int getId() {
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -60,19 +60,19 @@ public class Escenario {
 		this.nombre = nombre;
 	}
 
-	public Time getHora_reserva() {
+	public String getHora_reserva() {
 		return hora_reserva;
 	}
 
-	public void setHora_reserva(Time hora_reserva) {
+	public void setHora_reserva(String hora_reserva) {
 		this.hora_reserva = hora_reserva;
 	}
 
-	public Date getFecha_reserva() {
+	public String getFecha_reserva() {
 		return fecha_reserva;
 	}
 
-	public void setFecha_reserva(Date fecha_reserva) {
+	public void setFecha_reserva(String fecha_reserva) {
 		this.fecha_reserva = fecha_reserva;
 	}
 

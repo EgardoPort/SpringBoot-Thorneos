@@ -21,7 +21,6 @@ public class Deportista {
 	@Column(name = "apellido")
 	private String apellido;
 	@Column(name = "fechaNac")
-	@Temporal(TemporalType.DATE)
 	private String fechaNacimiento;
 	@Column(name = "peso")
 	private double peso;
