@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Personas</h1>
+	<hr>
+	<a th:href="@{add}">Agregar </a>
+	<br><br>
+	<table border="1">
+		<tr>
+			<th>Código</th>
+			<th>Nombres</th>
+			<th>Apellidos</th>
+			<th>Teléfono</th>
+			<th>Dui</th>
+			<th>Fecha</th>
+			<th>Dirección</th>
+			<th>Usuario</th>
+			<th>Tipo de usuario</th>
+			<th>Acciones</th>
+		</tr>
+		<tr th:each="per:${lista}">
+			<td th:text=${per.id}></td>
+			<td th:text=${per.nombres}></td>
+			<td th:text=${per.apellidos}></td>
+			<td th:text=${per.telefono}></td>
+			<td th:text=${per.dui}></td>
+			<td th:text=${per.fechaNacimiento}></td>
+			<td th:text=${per.direccion}></td>
+			<td th:text=${per.usuario}></td>
+			<td th:text=${per.tipoUsuario}></td>
+			<td>
+			<a th:href="@{update/} + ${per.id}">Editar</a>
+			<a th:href=@{delete/}+${per.id}>Eliminar</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

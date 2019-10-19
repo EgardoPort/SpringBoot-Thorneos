@@ -16,24 +16,15 @@ import javax.persistence.TemporalType;
 public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name ="id")
 	private int id;
-	@Column(name ="nombres")
 	private String nombres;
-	@Column(name = "apellidos")
 	private String apellidos;
-	@Column(name = "telefono")
 	private String telefono;
-	@Column(name = "dui")
 	private String dui;
-	@Column(name = "fechaNacimiento")
-	
-	private String fechaNacimiento;
-	@Column(name = "direccion")
+	@Temporal(TemporalType.DATE)
+	private Date fecha_nacimiento;
 	private String direccion;
-	@Column(name = "usuario")
 	private String usuario;
-	@Column(name = "clave")
 	private String clave;
 	@Column(name = "tipo_Usuario")
 	private String tipoUsuario;
@@ -78,12 +69,12 @@ public class Persona {
 		this.dui = dui;
 	}
 	
-	public String getFechaNacimiento() {
-		return fechaNacimiento;
+	public Date getFechaNacimiento() {
+		return fecha_nacimiento;
 	}
 	
-	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setFechaNacimiento(Date fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
 	}
 	
 	public String getDireccion() {

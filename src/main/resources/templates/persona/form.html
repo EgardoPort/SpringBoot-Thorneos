@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/persona/save" method="POST">
+		<table>
+			<tr>
+				<td>Nombres</td>
+				<td><input type="text" name="nommbre" required></td>
+			</tr>
+			<tr>
+				<td>Apellidos</td>
+				<td><input type="text" name="apellido" required></td>
+			</tr>
+			<tr>
+				<td>Teléfono</td>
+				<td><input type="text" name="telefono"></td>
+			</tr>
+			<tr>
+				<td>Dui</td>
+				<td><input type="text" name="dui" ></td>
+			</tr>
+			<tr>
+				<td>Fecha de Nacimiento</td>
+				<td><input type="date" name="fecha_nacimiento" ></td>
+			</tr>
+			<tr>
+				<td>Dirección</td>
+				<td><input type="text" name="direccion" ></td>
+			</tr>
+			<tr>
+				<td>Usuario</td>
+				<td><input type="text" name="usuario" ></td>
+			</tr>
+			<tr>
+				<td>Clave</td>
+				<td><input type="password" name="clave" ></td>
+			</tr>
+			<tr>
+				<td>Tipo de usuario</td>
+				<td>
+					<select name="tipo" th:value="${per.tipoUsuario}">
+						<option value="Administrador">Administrador</option>
+						<option value="Encargado">Encargado</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Guardar" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

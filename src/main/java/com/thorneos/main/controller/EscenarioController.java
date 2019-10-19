@@ -1,5 +1,10 @@
 package com.thorneos.main.controller;
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,17 +41,19 @@ public class EscenarioController {
 	}
 
 	@PostMapping("save")
-	public String save(HttpServletRequest req) {
+	public String save(HttpServletRequest req) throws ParseException {
 		Escenario es = new Escenario();
 		int id = (req.getParameter("id") != "") ? Integer.parseInt(req.getParameter("id")) : 0;
-
+		Date fechaR = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_reserva"));
+		
+		Date hora = new SimpleDateFormat("HH:mm:ss").parse(req.getParameter("hora_reserva"));
 		if (id > 0) {
 			es.setId(id);
 		}
 		es.setDireccion(req.getParameter("direccion"));
 		es.setNombre(req.getParameter("nombre"));
-        es.setHora_reserva(req.getParameter("hora_reserva"));
-        es.setFecha_reserva(req.getParameter("fecha_reserva"));
+        es.setHora_reserva(hora);
+        es.setFecha_reserva(fechaR);
 		es.setEstadoesce(req.getParameter("estadoesce"));
 
 		iEscenarioRepository.save(es);

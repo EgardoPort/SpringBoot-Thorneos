@@ -2,12 +2,18 @@ package com.thorneos.main.entities;
 
 
 
+import java.sql.Time;
+import java.text.DateFormat;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -26,11 +32,11 @@ public class Escenario {
 	private String nombre;
 	
 	@Column (name="hora_reserva")
-	private String hora_reserva;
+	private Date hora_reserva;
 	
-	@DateTimeFormat(pattern = "YYYY-MM-dd")
+	@Temporal(TemporalType.DATE)
 	@Column (name="fecha_reserva")
-	private String fecha_reserva;
+	private Date fecha_reserva;
 	
 	@Column (name="estadoesce")
 	private String estadoesce;
@@ -60,19 +66,19 @@ public class Escenario {
 		this.nombre = nombre;
 	}
 
-	public String getHora_reserva() {
+	public Date getHora_reserva() {
 		return hora_reserva;
 	}
 
-	public void setHora_reserva(String hora_reserva) {
+	public void setHora_reserva(Date hora_reserva) {
 		this.hora_reserva = hora_reserva;
 	}
 
-	public String getFecha_reserva() {
+	public Date getFecha_reserva() {
 		return fecha_reserva;
 	}
 
-	public void setFecha_reserva(String fecha_reserva) {
+	public void setFecha_reserva(Date fecha_reserva) {
 		this.fecha_reserva = fecha_reserva;
 	}
 

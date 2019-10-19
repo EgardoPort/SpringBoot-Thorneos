@@ -1,5 +1,6 @@
 package com.thorneos.main.controller;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -44,17 +45,19 @@ public class PersonaController {
 	}
 	
 	@PostMapping("save")
-	public String guardar(HttpServletRequest req) {
+	public String guardar(HttpServletRequest req) throws ParseException {
 		Persona per = new Persona();
+		Date fechaN = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_nacimiento"));
 		
 		per.setNombres(req.getParameter("nombre"));
 		per.setApellidos(req.getParameter("apellido"));
 		per.setTelefono(req.getParameter("telefono"));
 		per.setDui(req.getParameter("dui"));
-		per.setFechaNacimiento(req.getParameter("fecha"));
+		per.setFechaNacimiento(fechaN);
 		per.setDireccion(req.getParameter("direccion"));
 		per.setUsuario(req.getParameter("usuario"));
 		per.setClave(req.getParameter("clave"));
+		per.setTipoUsuario(req.getParameter("tipo"));
 		
 		iPersona.save(per);
 		return "redirect:/persona/index";
