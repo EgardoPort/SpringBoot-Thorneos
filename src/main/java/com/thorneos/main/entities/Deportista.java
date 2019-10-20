@@ -1,5 +1,7 @@
 package com.thorneos.main.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,8 +22,8 @@ public class Deportista {
 	private String nombre;
 	@Column(name = "apellido")
 	private String apellido;
-	@Column(name = "fechaNac")
-	private String fechaNacimiento;
+	@Temporal(TemporalType.DATE)
+	private Date fecha_nacimiento;
 	@Column(name = "peso")
 	private double peso;
 
@@ -49,12 +51,12 @@ public class Deportista {
 		this.apellido = apellido;
 	}
 
-	public String getFechaNacimiento() {
-		return fechaNacimiento;
+	public Date getFechaNac() {
+		return fecha_nacimiento;
 	}
 
-	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setFechaNac(Date fecha_nacimiento) {
+		this.fecha_nacimiento = fecha_nacimiento;
 	}
 
 	public double getPeso() {

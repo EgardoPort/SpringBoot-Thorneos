@@ -1,5 +1,7 @@
 package com.thorneos.main.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -16,20 +18,14 @@ public class Torneo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
-	@Column(name = "nombre")
 	private String nombre;
-	@Column(name = "fecha_inicio")
-	
-	private String fecha_inicio;
-	@Column(name = "fecha_fin")
-	
-	private String fecha_fin;
-	@Column(name = "id_disciplina")
-	private int id_disciplina;
-	@Column(name = "id_encargado")
-	private int id_encargado;
-	@Column(name = "cantidad_equipos")
-	private int cantidad_equipos;
+	@Temporal(TemporalType.DATE)
+	private Date fecha_inicio;
+	@Temporal(TemporalType.DATE)
+	private Date fecha_fin;
+	private Integer id_disciplina;
+	private Integer encargado_id;
+	private Integer cantidad_equipos;
 	
 	public int getId() {
 		return id;
@@ -43,35 +39,34 @@ public class Torneo {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getFecha_inicio() {
+	public Date getFecha_inicio() {
 		return fecha_inicio;
 	}
-	public void setFecha_inicio(String fecha_inicio) {
+	public void setFecha_inicio(Date fecha_inicio) {
 		this.fecha_inicio = fecha_inicio;
 	}
-	public String getFecha_fin() {
+	public Date getFecha_fin() {
 		return fecha_fin;
 	}
-	public void setFecha_fin(String fecha_fin) {
+	public void setFecha_fin(Date fecha_fin) {
 		this.fecha_fin = fecha_fin;
 	}
-	public int getId_disciplina() {
+	public Integer getId_disciplina() {
 		return id_disciplina;
 	}
-	public void setId_disciplina(int id_disciplina) {
+	public void setId_disciplina(Integer id_disciplina) {
 		this.id_disciplina = id_disciplina;
 	}
-	public int getId_encargado() {
-		return id_encargado;
+	public Integer getEncargado_id() {
+		return encargado_id;
 	}
-	public void setId_encargado(int id_encargado) {
-		this.id_encargado = id_encargado;
+	public void setEncargado_id(Integer encargado_id) {
+		this.encargado_id = encargado_id;
 	}
-	public int getCantidad_equipos() {
+	public Integer getCantidad_equipos() {
 		return cantidad_equipos;
 	}
-	public void setCantidad_equipos(int cantidad_equipos) {
+	public void setCantidad_equipos(Integer cantidad_equipos) {
 		this.cantidad_equipos = cantidad_equipos;
 	}
-	
 }

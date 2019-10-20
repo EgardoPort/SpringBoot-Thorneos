@@ -1,6 +1,5 @@
 package com.thorneos.main.entities;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,20 +11,16 @@ import javax.persistence.Table;
 public class Equipo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
 	private int id;
 	
-	@Column (name="nombre")
 	private String nombre;
-	
-	@Column (name="num_integrantes")
-	private int num_integrantes;
+	private Integer num_integrantes;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -37,11 +32,11 @@ public class Equipo {
 		this.nombre = nombre;
 	}
 
-	public int getNum_integrantes() {
+	public Integer getNum_integrantes() {
 		return num_integrantes;
 	}
 
-	public void setNum_integrantes(int num_integrantes) {
+	public void setNum_integrantes(Integer num_integrantes) {
 		this.num_integrantes = num_integrantes;
 	}
 }

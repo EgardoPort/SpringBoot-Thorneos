@@ -1,5 +1,8 @@
 package com.thorneos.main.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +28,7 @@ public class TorneoController {
 	public String listar(Model model) {
 		List<Torneo> lista = (List<Torneo>) iTorneo.findAll();
 		model.addAttribute("list", lista);
-		return "torneo/list";
+		return "torneo/index";
 	}
 	
 	@GetMapping("delete/{id}")
@@ -48,17 +51,19 @@ public class TorneoController {
 	}
 	
 	@PostMapping("save")
-	public String guardar(HttpServletRequest req) {
+	public String guardar(HttpServletRequest req) throws ParseException {
 		Torneo tor = new Torneo();
-		int id_dis = Integer.parseInt(req.getParameter("idDis"));
-		int id_enca = Integer.parseInt(req.getParameter("idEn"));
-		int cantidad = Integer.parseInt(req.getParameter("canE"));
+		int id_dis = Integer.parseInt(req.getParameter("id_disciplina"));
+		int id_enca = Integer.parseInt(req.getParameter("encargado_id"));
+		int cantidad = Integer.parseInt(req.getParameter("cantidad_equipos"));
+		Date fechaI = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_inicio"));
+		Date fechaF = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_fin"));
 		
 		tor.setNombre(req.getParameter("nombre"));
-		tor.setFecha_inicio(req.getParameter("feIni"));
-		tor.setFecha_fin(req.getParameter("feFin"));
+		tor.setFecha_inicio(fechaI);
+		tor.setFecha_fin(fechaF);
 		tor.setId_disciplina(id_dis);
-		tor.setId_encargado(id_enca);
+		tor.setEncargado_id(id_enca);
 		tor.setCantidad_equipos(cantidad);
 		
 		iTorneo.save(tor);
