@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/torneo/save" method="POST">
+	<input type="hidden" name="id" th:value="${tor.id}">
+		<table>
+			<tr>
+				<td>Nombre torneo:</td>
+				<td><input type="text" name="nombre"></td>
+			</tr>
+			<tr>
+				<td>Inicio:</td>
+				<td><input type="date" name="fecha_inicio"></td>
+			</tr>
+			<tr>
+				<td>Finalización:</td>
+				<td><input type="date" name="fecha_fin"></td>
+			</tr>
+			<tr>
+				<td>Disciplina</td>
+				<td><select name="id_disciplina" th:value="${tor.id_disciplina}">
+						<option th:each="t:${dis}" th:value="${t.id}" th:text="${t.nombre}"></option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Encargado:</td>
+				<td><select name="id_persona" th:value="${tor.id_persona}">
+						<option th:each="p:${per}" th:value="${p.id}" th:text="${p.nombres}"></option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>Total de equipos:</td>
+				<td><input type="number" name="cantidad_equipos"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Guardar" /></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

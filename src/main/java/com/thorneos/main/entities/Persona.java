@@ -16,7 +16,7 @@ import javax.persistence.TemporalType;
 public class Persona {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int id_persona;
 	private String nombres;
 	private String apellidos;
 	private String telefono;
@@ -30,11 +30,11 @@ public class Persona {
 	private String tipoUsuario;
 	
 	public int getId() {
-		return id;
+		return id_persona;
 	}
 	
-	public void setId(int id) {
-		this.id = id;
+	public void setId(int id_persona) {
+		this.id_persona = id_persona;
 	}
 	
 	public String getNombres() {
