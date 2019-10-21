@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<br><br>
+	<h1>Listado de deportistas</h1>
+	<a th:href="@{add}">Agregar deportista</a>
+	<hr>
+	<table border="1">
+	  <tr>
+	    <th>Código</th>
+	    <th>Nombre</th>
+	    <th>Apellido</th>
+	    <th>Fecha de nacimiento</th>
+	    <th>Peso</th>
+	    <th colspan="2">Opciones</th>
+	  </tr>
+	  <tr th:each="item:${lista}">
+	    <td th:text=${item.id}></td>
+	    <td th:text=${item.nombre}></td>
+	    <td th:text=${item.apellido}></td>
+	    <td th:text=${item.fechaNac}></td>
+	    <td th:text=${item.peso}></td>
+	    <td>
+	    	<a th:href="@{update/}+${item.id}">Editar</a>
+	    	<a th:href="@{delete/}+${item.id}">Eliminar</a>
+	    </td>
+	  </tr>
+	</table>
+
+</body>
+</html>

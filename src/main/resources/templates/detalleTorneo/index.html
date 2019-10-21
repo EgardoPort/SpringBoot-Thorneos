@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Lista de equipos en el torneo </h1>
+	<hr>
+	<a th:href="@{agregar}" >Agregar equipo</a>
+	<br>
+	<table border="1">
+		<tr>
+			<th>Equipo</th>
+			<th>Acción</th>
+		</tr>
+		<tr th:each="item:${lista}">
+			<td th:text=${item.id_equipo.nombre}></td>
+			<td>
+			<a th:href="@{update/}+${item.id}">Editar</a>
+				<a th:href="@{delete/}+${item.id}">Eliminar</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

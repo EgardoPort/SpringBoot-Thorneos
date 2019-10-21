@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Start Page</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+	<h1>Escenarios</h1>
+	<hr>
+	<a th:href=@{agregar}>Agregar </a>
+	<br><br>
+	<table border="1">
+		<tr>
+			<th>ID</th>
+			<th>Direccion</th>
+			<th>Nombre</th>
+			<th>Hora Reserva</th>
+			<th>Fecha Reserva</th>
+			<th>Estado</th>
+			<th>Accion</th>
+		</tr>
+		<tr th:each="item:${lista}">
+			<td th:text=${item.id}></td>
+			<td th:text=${item.direccion}></td>
+			<td th:text=${item.nombre}></td>
+			<td th:text=${item.hora_reserva}></td>
+			<td th:text=${item.fecha_reserva}></td>
+			<td th:text=${item.estadoesce}></td>
+			<td>
+			<a th:href="@{update/} + ${item.id}">Editar</a>
+			<a th:href=@{delete/}+${item.id}>Eliminar</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

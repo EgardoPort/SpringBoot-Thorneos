@@ -7,5 +7,5 @@ import com.thorneos.main.entities.Persona;
 
 @Repository
 public interface IPersonaRepository extends CrudRepository<Persona, Integer>{
-	
+	Persona findByUsuario(String usuario);
 }

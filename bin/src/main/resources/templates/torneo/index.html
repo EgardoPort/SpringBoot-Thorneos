@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Torneos</h1>
+	<hr>
+	<a th:href="@{add}">Agregar </a>
+	<br><br>
+	<table border="1">
+		<tr>
+			<th>Código</th>
+			<th>Nombre</th>
+			<th>Inicio</th>
+			<th>Finalización</th>
+			<th>Disciplina</th>
+			<th>Encargado</th>
+			<th>Total equipos</th>
+			<th>Acciones</th>
+		</tr>
+		<tr th:each="t:${list}">
+			<td th:text=${t.id}></td>
+			<td th:text=${t.nombre}></td>
+			<td th:text=${t.fecha_inicio}></td>
+			<td th:text=${t.fecha_fin}></td>
+			<td th:text=${t.id_disciplina.nombre}></td>
+			<td th:text=${t.id_persona.nombres}></td>
+			<td th:text=${t.cantidad_equipos}></td>
+			<td>
+			<a th:href="@{update/} + ${t.id}">Editar</a>
+			<a th:href=@{delete/}+${t.id}>Eliminar</a>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

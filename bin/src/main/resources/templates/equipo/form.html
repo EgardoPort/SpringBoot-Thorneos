@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<br><br>
+	<h1>Agregar un equipo</h1>
+	<hr>
+	<form action="/equipo/save" method="POST">
+		<input type="hidden" name="id" th:value="${equi.id}">
+		<table>
+		  <tr>
+		    <td>Nombre</td>
+		    <td><input type="text" name="nombre" th:value="${equi.nombre}"></td>
+		  </tr>
+		  <tr>
+				<td># Integrantes</td>
+				<td><input type="number" name="num_integrantes" th:value="${equi.num_integrantes}"></td>
+		  </tr>
+		</table>
+		<input type="submit" value="Guardar">
+	</form>
+</body>
+</html>
