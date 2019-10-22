@@ -252,7 +252,7 @@ a:hover {
 .site-navbar {
   background: #fff;
   margin-bottom: 0px;
-  z-index: 1999;
+  z-index: 2;
   position: relative;
 }
 

@@ -29,12 +29,16 @@ public class TorneoController {
 	@GetMapping("index")
 	public String listar(Model model) {
 		List<Torneo> lista = (List<Torneo>) iTorneo.findAll();
+		model.addAttribute("tor", new Torneo());
+		model.addAttribute("dis", iTorneo.getDisciplina());
+		model.addAttribute("per", iTorneo.getPersona());
 		model.addAttribute("list", lista);
 		return "torneo/index";
 	}
 	
-	@GetMapping("delete/{id}")
-	public String delete(@PathVariable Integer id) {
+	@GetMapping("delete")
+	public String delete(HttpServletRequest req) {
+		int id = (req.getParameter("id") != "")? Integer.parseInt(req.getParameter("id")):0;
 		iTorneo.deleteById(id);
 		return "redirect:/torneo/index";
 	}
