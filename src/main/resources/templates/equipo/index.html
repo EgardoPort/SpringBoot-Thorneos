@@ -42,20 +42,16 @@
 
 </style>
 <script type="text/javascript">
-function cargar(id, nombre, fechaInicio, fechaFin, idDisciplina, idPersona, cantidadEquipos)
+function cargar(id, nombre, numIntegrantes)
 {
-	document.frmTorneoEdit.id.value = id;
-	document.frmTorneoEdit.nombre.value = nombre;
-	document.frmTorneoEdit.fecha_inicio.value = fechaInicio;
-	document.frmTorneoEdit.fecha_fin.value = fechaFin;
-	document.frmTorneoEdit.id_disciplina.value = idDisciplina;
-	document.frmTorneoEdit.id_persona.value = idPersona;
-	document.frmTorneoEdit.cantidad_equipos.value = cantidadEquipos;
+	document.frmEquipoEdit.id.value = id;
+	document.frmEquipoEdit.nombre.value = nombre;
+	document.frmEquipoEdit.num_integrantes.value = numIntegrantes;
 }
 
 function cargarEliminar(id)
 {
-	document.frmTorneoEliminar.id.value = id;
+	document.frmEquipoEliminar.id.value = id;
 }
 
 </script>
@@ -67,7 +63,7 @@ function cargarEliminar(id)
 		<div class="site-mobile-menu">
 			<div class="site-mobile-menu-header">
 				<div class="site-mobile-menu-logo">
-					<a href="#"><img th:src="@{/images/logo.png}" alt="Image"></a>
+					<a href="torneo/index"><img th:src="@{/imagenes/ll.jpg}" alt="Image"></a>
 				</div>
 				<div class="site-mobile-menu-close mt-3">
 					<span class="icon-close2 js-menu-toggle"></span>
@@ -92,12 +88,12 @@ function cargarEliminar(id)
 							<div class="d-inline-block">
 								<a href="#" class="text-secondary p-2 d-flex align-items-center"><span
 									class="icon-envelope mr-3"></span> <span
-									class="d-none d-md-block">youremail@domain.com</span></a>
+									class="d-none d-md-block">Thorneos@gmail.com</span></a>
 							</div>
 							<div class="d-inline-block">
 								<a href="#" class="text-secondary p-2 d-flex align-items-center"><span
 									class="icon-phone mr-0 mr-md-3"></span> <span
-									class="d-none d-md-block">+1 232 3532 321</span></a>
+									class="d-none d-md-block">+(503)  2353-2321</span></a>
 							</div>
 						</div>
 					</div>
@@ -108,7 +104,7 @@ function cargarEliminar(id)
 				role="navigation">
 				<div class="container position-relative">
 					<div class="site-logo">
-						<a href="index.html"><img th:src="@{/images/logo.png}" alt=""></a>
+						<a href="index"><img th:src="@{/imagenes/ll.jpg}" alt=""></a>
 					</div>
 
 					<div class="d-inline-block d-md-none ml-md-0 mr-auto py-3">
@@ -117,29 +113,26 @@ function cargarEliminar(id)
 					</div>
 
 					<ul class="site-menu js-clone-nav d-none d-md-block">
-						<li class="has-children active"><a href="index.html">Torneos</a>
+						<li class="has-children active"><a href="index">Torneos</a>
 							<ul class="dropdown arrow-top">
-								<li><a href="#">Menu One</a></li>
-								<li><a href="#">Menu Two</a></li>
-								<li><a href="#">Menu Three</a></li>
-								<li class="has-children"><a href="#">Sub Menu</a>
-									<ul class="dropdown">
-										<li><a href="#">Menu One</a></li>
-										<li><a href="#">Menu Two</a></li>
-										<li><a href="#">Menu Three</a></li>
-									</ul></li>
+							<li><a th:href="@{/torneo/index}">Torneos</a></li>
+								<li><a th:href="@{/escenario/index}">Escenario</a></li>
+								<li><a th:href="@{/disciplina/index}">Disciplinas</a></li>
+								
 							</ul></li>
-						<li class="has-children"><a href="news.html">News</a>
+						<li class="has-children"><a href="">Partidos</a>
 							<ul class="dropdown arrow-top">
-								<li><a href="#">Menu One</a></li>
-								<li><a href="#">Menu Two</a></li>
-								<li><a href="#">Menu Three</a></li>
+								<li><a th:href="@{/partido/index}">Partidos</a></li>
+								<li><a th:href="@{/puntaje/index}">Puntajes</a></li>
 							</ul></li>
-						<li><a href="">Partidos</a></li>
-						<li><a th:href="@{/equipo/index}">Equipos</a></li>
-						<li><a href="about.html">Usuarios</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
+							<li class="has-children"><a href="">Equipo</a>
+							<ul class="dropdown arrow-top">
+								<li><a th:href="@{/equipo/index}">Equipo</a></li>
+								<li><a th:href="@{/deportista/index}">Deportista</a></li>
+							</ul></li>
+						
+						<li><a th:href="@{/persona/index}">Usuarios</a></li>
+						<li><a th:href="@{//index}">Perfil</a></li>
 				</div>
 			</nav>
 		</header>
@@ -151,20 +144,30 @@ function cargarEliminar(id)
       <div class="mb-5">
               <h2 class="text-black">Equipos</h2>
               <br>
+              <button class="btn btn-dark" id="nuevoEquipo">Nuevo</button>
+              <br>
+              <br>
               <div class="block-25">
                 <ul class="list-unstyled">
+                <hr>
                   <li class="mb-4" th:each="item:${lista}">
                     <a href="#" class="d-flex">
                       <figure class="image mr-4">
                         <img th:src="@{/images/texans.png}" alt="" class="img-fluid">
                       </figure>
                       <div class="text">
-                        <h3 class="heading font-weight-light" th:text=${item.nombre}></h3>
-                        <a href="#" class="pl-0 pr-3" title="Equipos del torneo" style="float: right;"><span class="icon-info"></span></a>
-						<a id="eliminarTorneo" class="pl-0 pr-3" title="Eliminar" style="float: right;" ><span class="icon-remove"></span></a>
-                        <p class="text-black" style="float: left;">Integrantes: &nbsp;</p><p style="float: left;" th:text=${item.num_integrantes}></p>
+                      <button class="btn btn-info btn-sm" style="float: right; padding-left: 16px; padding-right: 16px;" id="editarEquipo" th:attr="onclick=|cargar('${item.id}', '${item.nombre}', '${item.num_integrantes}')|">Editar</button><br>
+                        <h4 class="text-black" th:text=${item.nombre}></h4>
+                        
+                        <!--  <a href="#" class="pl-0 pr-3" title="Equipos del torneo" style="float: right;"><span class="icon-info"></span></a>
+						<a id="eliminarTorneo" class="pl-0 pr-3" title="Eliminar" style="float: right;" ><span class="icon-remove"></span></a>-->
+                        <p class="text-black" style="float: left;">Integrantes: &nbsp;</p><p style="float: left;" th:text=${item.num_integrantes}></p>&nbsp; &nbsp;&nbsp; &nbsp;
+                        
+                        <button class="btn btn-danger btn-sm" style="float: right;" th:attr="onclick=|cargarEliminar('${item.id}')|" id="eliminarEquipo"> Eliminar</button>
                       </div>
+                      
                     </a>
+                    <hr>
                   </li>
                 </ul>
               </div>
@@ -174,27 +177,6 @@ function cargarEliminar(id)
       </div>
       </div>
 
-	<br><br>
-	<h1>Listado de equipos</h1>
-	<a th:href="@{add}">Agregar equipo</a>
-	<hr>
-	<table border="1">
-	  <tr>
-	    <th>Código</th>
-	    <th>Nombre</th>
-	    <th># Integrantes</th>
-	    <th colspan="2">Opciones</th>
-	  </tr>
-	  <tr th:each="item:${lista}">
-	    <td th:text=${item.id}></td>
-	    <td th:text=${item.nombre}></td>
-	    <td th:text=${item.num_integrantes}></td>
-	    <td>
-	    	<a th:href="@{update/}+${item.id}">Editar</a>
-	    	<a th:href="@{delete/}+${item.id}">Eliminar</a>
-	    </td>
-	  </tr>
-	</table>
 	
 			<footer class="site-footer border-top">
 			<div class="container">
@@ -343,61 +325,32 @@ function cargarEliminar(id)
 	</div>
 
 	<!-- Modal -->
-	<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Nuevo torneo</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Nuevo equipo</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="/torneo/save" method="POST">
+					<form action="/equipo/save" method="POST">
 						<div class="form-row">
 							<div class="form-column col-md-8 mb-8">
 								<div class="form-group required">
-									<label class="control-label">Nombre del torneo</label>
-									<input type="hidden" name="id" th:value="${tor.id}">
+									<label class="control-label">Nombre del equipo</label>
+									<input type="hidden" name="id" th:value="${equi.id}">
 									<input type="text" name="nombre" class="form-control">
 								</div>
 							</div>
 							<br><br>
 							<div class="form-column col-md-4 mb-3">
 								<div class="form-group required">
-									<label class="control-label">Inicio</label> <input type="date"
-										name="fecha_inicio" class="form-control" required>
-								</div>
-							</div>
-							<div class="form-column col-md-4 mb-3">
-								<div class="form-group required">
-									<label>Finalización</label> <input type="date" name="fecha_fin"
-										class="form-control"required>
-								</div>
-							</div>
-							<div class="form-column col-md-4 mb-3">
-								<div class="form-group">
-									<label>Disciplina</label>
-									<select name="id_disciplina" class="form-control" th:value="${tor.id_disciplina}">
-										<option th:each="t:${dis}" th:value="${t.id}"
-											th:text="${t.nombre}"></option>
-									</select>
-								</div>
-							</div>
-							<div class="form-column col-md-4 mb-3">
-								<div class="form-group required">
-									<label>Encargado</label>
-									<select name="id_persona" class="form-control" th:value="${tor.id_persona}">
-										<option th:each="p:${per}" th:value="${p.id}" th:text="${p.nombres}"></option>
-									</select>
-								</div>
-							</div>
-							<div class="form-column col-md-4 mb-3">
-								<div class="form-group required">
-									<label>Cant. Equipos</label>
-										<input type="number" class="form-control" name="cantidad_equipos">
+									<label>Número integrantes</label>
+										<input type="number" class="form-control" name="num_integrantes">
 								</div>
 							</div>
 						</div>
@@ -410,26 +363,26 @@ function cargarEliminar(id)
 
 			</div>
 		</div>
-	</div> -->
+	</div>
 	
 	<!-- Modal -->
-	<!--<div class="modal fade" id="modalEditarTorneo" tabindex="-1" role="dialog"
+	<div class="modal fade" id="modalEditarEquipo" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Editar torneo</h5>
+					<h5 class="modal-title" id="exampleModalLabel">Editar equipo</h5>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
 				<div class="modal-body">
-					<form action="/torneo/save" method="POST" name="frmTorneoEdit">
+					<form action="/equipo/save" method="POST" name="frmEquipoEdit">
 						<div class="form-row">
 							<div class="form-column col-md-8 mb-8">
 								<div class="form-group required">
-									<label class="control-label">Nombre del torneo</label>
+									<label class="control-label">Nombre del equipo</label>
 									<input type="hidden" name="id">
 									<input type="text" name="nombre" class="form-control">
 								</div>
@@ -437,58 +390,27 @@ function cargarEliminar(id)
 							<br><br>
 							<div class="form-column col-md-4 mb-3">
 								<div class="form-group required">
-									<label class="control-label">Inicio</label> <input type="date"
-										name="fecha_inicio" class="form-control">
-								</div>
-							</div>
-							<div class="form-column col-md-4 mb-3">
-								<div class="form-group required">
-									<label>Finalización</label> <input type="date" name="fecha_fin"
-										class="form-control">
-								</div>
-							</div>
-							<div class="form-column col-md-4 mb-3">
-								<div class="form-group">
-									<label>Disciplina</label>
-									<select name="id_disciplina" class="form-control">
-										<option th:each="t:${dis}" th:value="${t.id}"
-											th:text="${t.nombre}"></option>
-									</select>
-								</div>
-							</div>
-							<div class="form-column col-md-4 mb-3">
-								<div class="form-group required">
-									<label>Encargado</label>
-									<select name="id_persona" class="form-control">
-										<option th:each="p:${per}" th:value="${p.id}" th:text="${p.nombres}"></option>
-									</select>
-								</div>
-							</div>
-							<div class="form-column col-md-4 mb-3">
-								<div class="form-group required">
-									<label>Cant. Equipos</label>
-										<input type="number" class="form-control" name="cantidad_equipos">
+									<label>Número integrantes</label>
+										<input type="number" class="form-control" name="num_integrantes">
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
 							<input style="margin-right: 30%;" type="submit" class="btn btn-primary" name="btnEnviar" value="Guardar cambios">
-						</div>
-						
+						</div>	
 					</form>
 				</div>
-
 			</div>
 		</div>
-	</div>-->
+	</div>
 	
 	<!-- Modal -->
-	<!--<div class="modal fade" id="modalEliminarTorneo" tabindex="-1" role="dialog"
+	<div class="modal fade" id="modalEliminarEquipo" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-body">
-					<form action="/torneo/delete" method="GET" name="frmTorneoEliminar">
+					<form action="/equipo/delete" method="GET" name="frmEquipoEliminar">
 						<div class="form-row">
 							<div class="form-column col-md-8 mb-8">
 								<div class="form-group required" style="text-align: center;">
@@ -509,7 +431,7 @@ function cargarEliminar(id)
 
 			</div>
 		</div>
-	</div>-->
+	</div>
 	
 	<script src="/static/js/jquery-3.3.1.min.js"
 		th:src="@{/js/jquery-3.3.1.min.js}"></script>
@@ -532,7 +454,7 @@ function cargarEliminar(id)
 	<script src="/static/js/main.js" th:src="@{/js/main.js}"></script>
 
 	<script type="text/javascript">
-		$(document).on("click", "#nuevoTorneo", function() {
+		$(document).on("click", "#nuevoEquipo", function() {
 
 			$("#exampleModal").modal({
 				backdrop : 'static',
@@ -540,16 +462,16 @@ function cargarEliminar(id)
 			});
 		});
 		
-		$(document).on("click", "#editarTorneo", function() {
+		$(document).on("click", "#editarEquipo", function() {
 
-			$("#modalEditarTorneo").modal({
+			$("#modalEditarEquipo").modal({
 				backdrop : 'static',
 				keyboard : false
 			});
 		});
-		$(document).on("click", "#eliminarTorneo", function() {
+		$(document).on("click", "#eliminarEquipo", function() {
 
-			$("#modalEliminarTorneo").modal({
+			$("#modalEliminarEquipo").modal({
 				backdrop : 'static',
 				keyboard : false
 			});

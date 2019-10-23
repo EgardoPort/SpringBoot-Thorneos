@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.thorneos.main.entities.Equipo;
+import com.thorneos.main.entities.Torneo;
 import com.thorneos.main.repository.IEquipoRepository;
 @Controller
 @RequestMapping(value = "equipo")
@@ -24,12 +25,14 @@ public class EquipoController {
 	@GetMapping("index")
 	public String index(Model model) {
 		List<Equipo> lista = (List<Equipo>) iEquipo.findAll();
+		model.addAttribute("equi", new Equipo());
 		model.addAttribute("lista", lista);
 		return "equipo/index";
 	}
 	
-	@GetMapping("delete/{id}")
-	public String delete(@PathVariable Integer id) {
+	@GetMapping("delete")
+	public String delete(HttpServletRequest req) {
+		int id = (req.getParameter("id") != "")? Integer.parseInt(req.getParameter("id")):0;
 		iEquipo.deleteById(id);
 		return "redirect:/equipo/index";
 	}

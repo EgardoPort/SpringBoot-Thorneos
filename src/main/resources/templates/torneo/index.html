@@ -119,6 +119,7 @@ function cargarEliminar(id)
 					<ul class="site-menu js-clone-nav d-none d-md-block">
 						<li class="has-children active"><a href="index">Torneos</a>
 							<ul class="dropdown arrow-top">
+							<li><a th:href="@{/torneo/index}">Torneos</a></li>
 								<li><a th:href="@{/escenario/index}">Escenario</a></li>
 								<li><a th:href="@{/disciplina/index}">Disciplinas</a></li>
 								
@@ -128,8 +129,7 @@ function cargarEliminar(id)
 								<li><a th:href="@{/partido/index}">Partidos</a></li>
 								<li><a th:href="@{/puntaje/index}">Puntajes</a></li>
 							</ul></li>
-						
-						<li class="has-children"><a href="">Equipo</a>
+							<li class="has-children"><a href="">Equipo</a>
 							<ul class="dropdown arrow-top">
 								<li><a th:href="@{/equipo/index}">Equipo</a></li>
 								<li><a th:href="@{/deportista/index}">Deportista</a></li>
@@ -137,7 +137,6 @@ function cargarEliminar(id)
 						
 						<li><a th:href="@{/persona/index}">Usuarios</a></li>
 						<li><a th:href="@{//index}">Perfil</a></li>
-					</ul>
 				</div>
 			</nav>
 		</header>
@@ -176,7 +175,6 @@ function cargarEliminar(id)
 												style="float: right;" th:attr="onclick=|cargarEliminar('${t.id}')|"><span class="icon-remove"></span></a>
 											<a href="#" id="editarTorneo" class="pl-0 pr-3" title="Modificar"
 												style="float: right;" th:attr="onclick=|cargar('${t.id}', '${t.nombre}', '${t.fecha_inicio}', '${t.fecha_fin}', '${t.id_disciplina.id}', '${t.id_persona.id}', '${t.cantidad_equipos}')|"  ><span class="icon-edit"></span></a>
-
 										</h2>
 										<hr>
 										<p class="text-black" style="float: left;">Disciplina:
@@ -308,11 +306,11 @@ function cargarEliminar(id)
 								<div class="input-group mb-3">
 									<input type="text"
 										class="form-control border-secondary text-white bg-transparent"
-										placeholder="Enter Email" aria-label="Enter Email"
+										placeholder="Enter Email" aria-label="Correo Electronico"
 										aria-describedby="button-addon2">
 									<div class="input-group-append">
 										<button class="btn btn-primary" type="button"
-											id="button-addon2">Send</button>
+											id="button-addon2">Enviar</button>
 									</div>
 								</div>
 							</form>
