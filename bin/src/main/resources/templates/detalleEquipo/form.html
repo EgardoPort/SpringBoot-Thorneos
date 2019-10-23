@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/detalleEquipo/guardar" method="POST">
+		<input type="hidden" name="id" th:value="${dEquipo.id}" />
+		<input type="hidden" name="id_equipo" th:value="${dEquipo.id_equipo}" />
+		<table>
+			<tr>
+				<td>Deportista:</td>
+				<td><select name="id_deportista" th:value="${dEquipo.id_deportista}">
+						<option th:each="d:${deportistas}" th:value="${d.id}" th:text="${d.nombre}+${d.apellido}"
+							th:selected="${d.id == dEquipo.id_deportista.id}" />
+				</select></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Guardar"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

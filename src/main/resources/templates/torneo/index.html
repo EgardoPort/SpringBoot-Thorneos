@@ -38,6 +38,8 @@
 	border-bottom-left-radius: 3px 4px;
 	box-shadow: 2px 2px 5px #999;
 }
+
+
 </style>
 <script type="text/javascript">
 function cargar(id, nombre, fechaInicio, fechaFin, idDisciplina, idPersona, cantidadEquipos)
@@ -115,7 +117,7 @@ function cargarEliminar(id)
 					</div>
 
 					<ul class="site-menu js-clone-nav d-none d-md-block">
-						<li class="has-children active"><a href="index.html">Home</a>
+						<li class="has-children active"><a href="index.html">Torneos</a>
 							<ul class="dropdown arrow-top">
 								<li><a href="#">Menu One</a></li>
 								<li><a href="#">Menu Two</a></li>
@@ -133,9 +135,9 @@ function cargarEliminar(id)
 								<li><a href="#">Menu Two</a></li>
 								<li><a href="#">Menu Three</a></li>
 							</ul></li>
-						<li><a href="matches.html">Matches</a></li>
-						<li><a href="team.html">Team</a></li>
-						<li><a href="about.html">About</a></li>
+						<li><a href="">Partidos</a></li>
+						<li><a th:href="@{/equipo/index}">Equipos</a></li>
+						<li><a href="about.html">Usuarios</a></li>
 						<li><a href="contact.html">Contact</a></li>
 					</ul>
 				</div>
@@ -494,15 +496,16 @@ function cargarEliminar(id)
 					<form action="/torneo/delete" method="GET" name="frmTorneoEliminar">
 						<div class="form-row">
 							<div class="form-column col-md-8 mb-8">
-								<div class="form-group required">
-								<span class="icon-warning"></span>
-									<h2 style="align: center;">¿Está seguro de eliminar el registro seleccionado?</h2>
+								<div class="form-group required" style="text-align: center;">
+								<span class="icon-warning" ></span>
+									<h2>¿Está seguro de eliminar el registro seleccionado?</h2>
+									<p class="text-warning"><small>Esta acción no podrá deshacerse en el futuro.</small> </p>
 									<input type="hidden" name="id">								
 								</div>
 							</div>	
 						</div>
-						<div class="modal-footer">
-							<input type="submit" class="btn btn-primary" name="btnEnviar" value="Aceptar">&nbsp&nbsp
+						<div class="modal-footer" style="margin-left: 20%;">
+							<input type="submit" class="btn btn-danger" name="btnEnviar" value="Aceptar">&nbsp&nbsp
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 						</div>
 						

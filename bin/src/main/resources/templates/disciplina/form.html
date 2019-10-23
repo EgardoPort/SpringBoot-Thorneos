@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="/disciplina/guardar" method="POST"  >
+	<input type="hidden" name="id" th:value="${dis.id}" />
+	<table>
+		<tr>
+			<td>Nombre: </td>
+			<td><input type="text" name="nombre" th:value="${dis.nombre}" /></td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" value="Guardar">
+			</td>
+		</tr>
+	</table>
+	</form>
+</body>
+</html>
