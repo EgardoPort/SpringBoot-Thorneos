@@ -32,8 +32,9 @@ public class PersonaController {
 		return "persona/index";
 	}
 	
-	@GetMapping("delete/{id}")
-	public String delete(@PathVariable Integer id) {
+	@GetMapping("delete")
+	public String delete(HttpServletRequest req) {
+		int id = (req.getParameter("id") != "")? Integer.parseInt(req.getParameter("id")):0;
 		iPersona.deleteById(id);
 		return "redirect:/persona/index";
 	}
