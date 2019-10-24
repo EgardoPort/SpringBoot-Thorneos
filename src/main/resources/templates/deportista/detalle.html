@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Detalle</title>
+<script src="/static/js/jquery-3.3.1.min.js"
+	th:src="@{/js/jquery-3.3.1.min.js}"></script>
+</head>
+<body>
+	<br>
+	<br>
+	<h1>Detalle</h1>
+	<hr>
+
+	<input type="hidden" id="id_deportista" th:value="${idDeportista}" />
+	<table>
+		<tr>
+			<td>Disciplinas:</td>
+			<td><select name="id_disciplina" id="id_disciplina">
+					<option th:each="d:${disciplinas}" th:value="${d.id}" th:text="${d.nombre}" />
+			</select></td>
+		</tr>
+		<tr>
+			<td><button id="guardar">Guardar</button></td>
+		</tr>
+
+	</table>
+	<table border="1">
+		<tr>
+			<th>Disciplina</th>
+			<th colspan="2">Opciones</th>
+		</tr>
+		<tr th:each="item:${list}">
+			<td th:text=${item.id_disciplina.nombre}></td>
+			<td>
+				<form action="/deportista/deletedetalle" method="GET">
+					<input type="hidden" name="id" th:value="${item.id}"> <input
+						type="submit" value="Eliminar">
+				</form>
+			</td>
+		</tr>
+	</table>
+	
+	<script type="text/javascript">
+
+		$(document).ready(function() {
+
+			$('#guardar').on('click', function() {
+
+				var id_deportista = $('#id_deportista').val();
+				var id_disciplina = $('#id_disciplina').val();
+				
+				$.ajax({
+					type: 'POST',
+					url: '/deportista/guardarDe',
+					dataType: 'json',
+					data: {
+						idDeportista: id_deportista, 
+						idDisciplina: id_disciplina
+					},
+					success:function(data) {
+						console.log(data);
+						//window.location.reload("/deportista/detalle/"+id_disciplina);
+					},
+					error : function(error) {
+						window.location.reload();
+						//console.log(error);
+					}
+				});
+
+			});
+		});
+
+	</script>
+</body>
+</html>

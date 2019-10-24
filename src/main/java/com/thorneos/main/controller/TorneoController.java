@@ -2,8 +2,10 @@ package com.thorneos.main.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -25,7 +27,7 @@ import com.thorneos.main.service.TorneoService;
 public class TorneoController {
 	@Autowired
 	TorneoService iTorneo;
-	
+
 	@GetMapping("index")
 	public String listar(Model model) {
 		List<Torneo> lista = (List<Torneo>) iTorneo.findAll();
@@ -35,14 +37,14 @@ public class TorneoController {
 		model.addAttribute("list", lista);
 		return "torneo/index";
 	}
-	
+
 	@GetMapping("delete")
 	public String delete(HttpServletRequest req) {
-		int id = (req.getParameter("id") != "")? Integer.parseInt(req.getParameter("id")):0;
+		int id = (req.getParameter("id") != "") ? Integer.parseInt(req.getParameter("id")) : 0;
 		iTorneo.deleteById(id);
 		return "redirect:/torneo/index";
 	}
-	
+
 	@GetMapping("add")
 	public String agregar(Model model) {
 		model.addAttribute("tor", new Torneo());
@@ -50,7 +52,7 @@ public class TorneoController {
 		model.addAttribute("per", iTorneo.getPersona());
 		return "torneo/form";
 	}
-	
+
 	@GetMapping("update/{id}")
 	public String update(@PathVariable Integer id, Model model) {
 		Torneo tor = iTorneo.findById(id);
@@ -59,20 +61,20 @@ public class TorneoController {
 		model.addAttribute("per", iTorneo.getPersona());
 		return "torneo/update";
 	}
-	
+
 	@PostMapping("save")
 	public String guardar(HttpServletRequest req) throws ParseException {
 		Torneo tor = new Torneo();
 		Date fechaI = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_inicio"));
 		Date fechaF = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_fin"));
-		
-		int id = (req.getParameter("id") != "")? Integer.parseInt(req.getParameter("id")):0;
+
+		int id = (req.getParameter("id") != "") ? Integer.parseInt(req.getParameter("id")) : 0;
 		int id_dis = Integer.parseInt(req.getParameter("id_disciplina"));
 		int id_enca = Integer.parseInt(req.getParameter("id_persona"));
-		
+
 		Disciplina dis = iTorneo.findDisciplinaById(id_dis);
 		Persona per = iTorneo.findPersonaById(id_enca);
-		if(id > 0) {
+		if (id > 0) {
 			tor.setId(id);
 		}
 		tor.setNombre(req.getParameter("nombre"));
@@ -81,8 +83,12 @@ public class TorneoController {
 		tor.setId_disciplina(dis);
 		tor.setId_persona(per);
 		tor.setCantidad_equipos(Integer.parseInt(req.getParameter("cantidad_equipos")));
-		
+
 		iTorneo.save(tor);
 		return "redirect:/torneo/index";
 	}
+
+
+	
+
 }

@@ -17,7 +17,7 @@ public class Deportista {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Integer id;
 	@Column(name = "nombre")
 	private String nombre;
 	@Column(name = "apellido")
@@ -27,11 +27,11 @@ public class Deportista {
 	@Column(name = "peso")
 	private double peso;
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

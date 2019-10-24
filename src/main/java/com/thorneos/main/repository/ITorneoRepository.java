@@ -7,5 +7,5 @@ import com.thorneos.main.entities.Torneo;
 
 @Repository
 public interface ITorneoRepository extends CrudRepository<Torneo, Integer> {
-
+	
 }

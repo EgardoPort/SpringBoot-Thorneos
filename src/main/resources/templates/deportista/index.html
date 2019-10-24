@@ -124,35 +124,36 @@
 						</div>
 					</nav>
 				</header>
-   
-
-				<br><br>
-				<h1>Listado de deportistas</h1>
-				<a th:href="@{add}">Agregar deportista</a>
-				<hr>
-				<table border="1">
-				  <tr>
-				    <th>Código</th>
-				    <th>Nombre</th>
-				    <th>Apellido</th>
-				    <th>Fecha de nacimiento</th>
-				    <th>Peso</th>
-				    <th colspan="2">Opciones</th>
-				  </tr>
-				  <tr th:each="item:${lista}">
-				    <td th:text=${item.id}></td>
-				    <td th:text=${item.nombre}></td>
-				    <td th:text=${item.apellido}></td>
-				    <td th:text=${item.fechaNac}></td>
-				    <td th:text=${item.peso}></td>
-				    <td>
-				    	<a th:href="@{update/}+${item.id}">Editar</a>
-				    	<a th:href="@{delete/}+${item.id}">Eliminar</a>
-				    </td>
-				  </tr>
-				</table>
-				<br><br>
+ 
 	
+								<br><br>
+								<h1>Listado de deportistas</h1>
+								<a th:href="@{add}">Agregar deportista</a>
+								<hr>
+								<table border="1">
+								  <tr>
+								    <th>Código</th>
+								    <th>Nombre</th>
+								    <th>Apellido</th>
+								    <th>Fecha de nacimiento</th>
+								    <th>Peso</th>
+								    <th colspan="2">Opciones</th>
+								  </tr>
+								  <tr th:each="item:${lista}">
+								    <td th:text=${item.id}></td>
+								    <td th:text=${item.nombre}></td>
+								    <td th:text=${item.apellido}></td>
+								    <td th:text=${item.fechaNac}></td>
+								    <td th:text=${item.peso}></td>
+								    <td>
+								    	<a th:href="@{detalle/}+${item.id}">Detalle</a>
+								    	<a th:href="@{update/}+${item.id}">Editar</a>
+								    	<a th:href="@{delete/}+${item.id}">Eliminar</a>
+								    </td>
+								  </tr>
+								</table>
+								
+								
 		<footer class="site-footer border-top">
 		      <div class="container">
 		        <div class="row">
@@ -293,6 +294,24 @@
 				</div>
 			</footer>
 		</div>
+		
+		<script src="/static/js/jquery-3.3.1.min.js"
+				th:src="@{/js/jquery-3.3.1.min.js}"></script>
+			<script src="/static/js/jquery-migrate-3.0.1.min.js"
+				th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+			<script src="/static/js/jquery-ui.js" th:src="@{/js/jquery-ui.js}"></script>
+			<script src="/static/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+			<script src="/static/js/bootstrap.min.js"
+				th:src="@{/js/bootstrap.min.js}"></script>
+			<script src="/static/js/owl.carousel.min.js"
+				th:src="@{/js/owl.carousel.min.js}"></script>
+			<script src="/static/js/jquery.stellar.min.js"
+				th:src="@{/js/jquery.stellar.min.js}"></script>
+			<script src="/static/js/jquery.countdown.min.js"
+				th:src="@{/js/jquery.countdown.min.js}"></script>
+			<script src="/static/js/jquery.magnific-popup.min.js"
+				th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+			<script src="/static/js/aos.js" th:src="@{/js/aos.js}"></script>
 
 </body>
 </html>
