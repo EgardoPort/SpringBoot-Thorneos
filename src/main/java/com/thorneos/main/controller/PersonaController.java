@@ -48,7 +48,12 @@ public class PersonaController {
 	@PostMapping("save")
 	public String guardar(HttpServletRequest req) throws ParseException {
 		Persona per = new Persona();
+		int id = (req.getParameter("id")!= "")? Integer.parseInt(req.getParameter("id")):0;
 		Date fechaN = new SimpleDateFormat("yyyy-MM-dd").parse(req.getParameter("fecha_nacimiento"));
+		
+		if (id>0) {
+			per.setId(id);
+		}
 		
 		per.setNombres(req.getParameter("nombre"));
 		per.setApellidos(req.getParameter("apellido"));

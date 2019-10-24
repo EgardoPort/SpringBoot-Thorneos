@@ -38,6 +38,8 @@
 	border-bottom-left-radius: 3px 4px;
 	box-shadow: 2px 2px 5px #999;
 }
+
+
 </style>
 <script type="text/javascript">
 function cargar(id, nombre, fechaInicio, fechaFin, idDisciplina, idPersona, cantidadEquipos)
@@ -65,7 +67,7 @@ function cargarEliminar(id)
 		<div class="site-mobile-menu">
 			<div class="site-mobile-menu-header">
 				<div class="site-mobile-menu-logo">
-					<a href="#"><img th:src="@{/images/logo.png}" alt="Image"></a>
+					<a href="torneo/index"><img th:src="@{/imagenes/ll.jpg}" alt="Image"></a>
 				</div>
 				<div class="site-mobile-menu-close mt-3">
 					<span class="icon-close2 js-menu-toggle"></span>
@@ -90,12 +92,12 @@ function cargarEliminar(id)
 							<div class="d-inline-block">
 								<a href="#" class="text-secondary p-2 d-flex align-items-center"><span
 									class="icon-envelope mr-3"></span> <span
-									class="d-none d-md-block">youremail@domain.com</span></a>
+									class="d-none d-md-block">Thorneos@gmail.com</span></a>
 							</div>
 							<div class="d-inline-block">
 								<a href="#" class="text-secondary p-2 d-flex align-items-center"><span
 									class="icon-phone mr-0 mr-md-3"></span> <span
-									class="d-none d-md-block">+1 232 3532 321</span></a>
+									class="d-none d-md-block">+(503)  2353-2321</span></a>
 							</div>
 						</div>
 					</div>
@@ -106,7 +108,7 @@ function cargarEliminar(id)
 				role="navigation">
 				<div class="container position-relative">
 					<div class="site-logo">
-						<a href="index.html"><img th:src="@{/images/logo.png}" alt=""></a>
+						<a href="index"><img th:src="@{/imagenes/ll.jpg}" alt=""></a>
 					</div>
 
 					<div class="d-inline-block d-md-none ml-md-0 mr-auto py-3">
@@ -115,36 +117,33 @@ function cargarEliminar(id)
 					</div>
 
 					<ul class="site-menu js-clone-nav d-none d-md-block">
-						<li class="has-children active"><a href="index.html">Home</a>
+						<li class="has-children active"><a href="index">Torneos</a>
 							<ul class="dropdown arrow-top">
-								<li><a href="#">Menu One</a></li>
-								<li><a href="#">Menu Two</a></li>
-								<li><a href="#">Menu Three</a></li>
-								<li class="has-children"><a href="#">Sub Menu</a>
-									<ul class="dropdown">
-										<li><a href="#">Menu One</a></li>
-										<li><a href="#">Menu Two</a></li>
-										<li><a href="#">Menu Three</a></li>
-									</ul></li>
+							<li><a th:href="@{/torneo/index}">Torneos</a></li>
+								<li><a th:href="@{/escenario/index}">Escenario</a></li>
+								<li><a th:href="@{/disciplina/index}">Disciplinas</a></li>
+								
 							</ul></li>
-						<li class="has-children"><a href="news.html">News</a>
+						<li class="has-children"><a href="">Partidos</a>
 							<ul class="dropdown arrow-top">
-								<li><a href="#">Menu One</a></li>
-								<li><a href="#">Menu Two</a></li>
-								<li><a href="#">Menu Three</a></li>
+								<li><a th:href="@{/partido/index}">Partidos</a></li>
+								<li><a th:href="@{/puntaje/index}">Puntajes</a></li>
 							</ul></li>
-						<li><a href="matches.html">Matches</a></li>
-						<li><a href="team.html">Team</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="contact.html">Contact</a></li>
-					</ul>
+							<li class="has-children"><a href="">Equipo</a>
+							<ul class="dropdown arrow-top">
+								<li><a th:href="@{/equipo/index}">Equipo</a></li>
+								<li><a th:href="@{/deportista/index}">Deportista</a></li>
+							</ul></li>
+						
+						<li><a th:href="@{/persona/index}">Usuarios</a></li>
+						<li><a th:href="@{//index}">Perfil</a></li>
 				</div>
 			</nav>
 		</header>
 
 		<div
 			class="site-section block-13 bg-primary fixed overlay-primary bg-image"
-			style="background-image: url('/images/hero_bg_3.jpg');"
+			style="background-image: url('/imagenes/hero_bg_3.jpg');"
 			th:src="@{/images/hero_bg_3.jpg}" data-stellar-background-ratio="0.5">
 
 			<div class="container">
@@ -161,7 +160,7 @@ function cargarEliminar(id)
 							<!-- uses .block-12 -->
 							<div class="block-12">
 								<figure>
-									<img th:src="@{/images/imagen1.png}" alt="Image"
+									<img th:src="@{/imagenes/imagen1.png}" alt="Image"
 										class="img-fluid">
 								</figure>
 								<div class="text">
@@ -176,7 +175,6 @@ function cargarEliminar(id)
 												style="float: right;" th:attr="onclick=|cargarEliminar('${t.id}')|"><span class="icon-remove"></span></a>
 											<a href="#" id="editarTorneo" class="pl-0 pr-3" title="Modificar"
 												style="float: right;" th:attr="onclick=|cargar('${t.id}', '${t.nombre}', '${t.fecha_inicio}', '${t.fecha_fin}', '${t.id_disciplina.id}', '${t.id_persona.id}', '${t.cantidad_equipos}')|"  ><span class="icon-edit"></span></a>
-
 										</h2>
 										<hr>
 										<p class="text-black" style="float: left;">Disciplina:
@@ -200,79 +198,79 @@ function cargarEliminar(id)
 
 
 		<footer class="site-footer border-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-4">
-						<div class="mb-5">
-							<h3 class="footer-heading mb-4">About Sportz</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-								Saepe pariatur reprehenderit vero atque, consequatur id ratione,
-								et non dignissimos culpa? Ut veritatis, quos illum totam quis
-								blanditiis, minima minus odio!</p>
-						</div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="mb-5">
+              <h3 class="footer-heading mb-4">Sobre Thor-neos</h3>
+              <img src="/imagenes/ll.jpg" alt="" class="img-fluid" />
+              <p>Thor-neos tiene finalidad impulsar a todas las personas a participar en sus diferente disciplinas deportivas.</p>
+            </div>
 
-						<div class="mb-5">
-							<h3 class="footer-heading mb-4">Recent Blog</h3>
-							<div class="block-25">
-								<ul class="list-unstyled">
-									<li class="mb-3"><a href="#" class="d-flex">
-											<figure class="image mr-4">
-												<img src="images/img_1.jpg" alt="" class="img-fluid">
-											</figure>
-											<div class="text">
-												<h3 class="heading font-weight-light">Lorem ipsum dolor
-													sit amet consectetur elit</h3>
-											</div>
-									</a></li>
-									<li class="mb-3"><a href="#" class="d-flex">
-											<figure class="image mr-4">
-												<img src="images/img_1.jpg" alt="" class="img-fluid">
-											</figure>
-											<div class="text">
-												<h3 class="heading font-weight-light">Lorem ipsum dolor
-													sit amet consectetur elit</h3>
-											</div>
-									</a></li>
-									<li class="mb-3"><a href="#" class="d-flex">
-											<figure class="image mr-4">
-												<img src="images/img_1.jpg" alt="" class="img-fluid">
-											</figure>
-											<div class="text">
-												<h3 class="heading font-weight-light">Lorem ipsum dolor
-													sit amet consectetur elit</h3>
-											</div>
-									</a></li>
-								</ul>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-lg-4 mb-5 mb-lg-0">
-						<div class="row mb-5">
-							<div class="col-md-12">
-								<h3 class="footer-heading mb-4">Quick Menu</h3>
-							</div>
-							<div class="col-md-6 col-lg-6">
-								<ul class="list-unstyled">
-									<li><a href="#">Home</a></li>
-									<li><a href="#">Matches</a></li>
-									<li><a href="#">News</a></li>
-									<li><a href="#">Team</a></li>
-								</ul>
-							</div>
-							<div class="col-md-6 col-lg-6">
-								<ul class="list-unstyled">
-									<li><a href="#">About Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Membership</a></li>
-								</ul>
-							</div>
-						</div>
+            <div class="mb-5">
+              <h3 class="footer-heading mb-4">Noticia reciente</h3>
+              <div class="block-25">
+                <ul class="list-unstyled">
+                  <li class="mb-3">
+                    <a href="#" class="d-flex">
+                      <figure class="image mr-4">
+                        <img src="/imagenes/img_1.jpg" alt="" class="img-fluid"/>
+                      </figure>
+                      <div class="text">
+                        <h3 class="heading font-weight-light">La final de Champions League se jugará en España un día antes de la final de la UEFA Champions League</h3>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mb-3">
+                    <a href="#" class="d-flex">
+                      <figure class="image mr-4">
+                        <img src="/imagenes/img_1.jpg" alt="" class="img-fluid"/>
+                      </figure>
+                      <div class="text">
+                        <h3 class="heading font-weight-light">El Real Madrid sigue haciendo historia</h3>
+                      </div>
+                    </a>
+                  </li>
+                  <li class="mb-3">
+                    <a href="#" class="d-flex">
+                      <figure class="image mr-4">
+                        <img src="/imagenes/img_1.jpg" alt="" class="img-fluid"/>
+                      </figure>
+                      <div class="text">
+                        <h3 class="heading font-weight-light">A diez días del Major, Team Liquid hace cambios en su alineación</h3>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+          </div>
+          <div class="col-lg-4 mb-5 mb-lg-0">
+            <div class="row mb-5">
+              <div class="col-md-12">
+                <h3 class="footer-heading mb-4">Menú</h3>
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <ul class="list-unstyled">
+                <li><a th:href="@{//index}">Torneos</a></li>
+                <li><a th:href="@{//index}">Disciplina</a></li>
+                <li><a th:href="@{//index}">Partido</a></li>
+                <li><a th:href="@{//index}">Puntaje</a></li>
+                </ul>
+              </div>
+              <div class="col-md-6 col-lg-6">
+                <ul class="list-unstyled">
+                  <li><a th:href="@{//index}">Equipo</a></li>
+                  <li><a th:href="@{//index}">Deportista</a></li>
+                  <li><a th:href="@{/persona/index}">Usuario</a></li>
+                </ul>
+              </div>
+            </div>
 
 						<div class="row">
 							<div class="col-md-12">
-								<h3 class="footer-heading mb-4">Follow Us</h3>
+								<h3 class="footer-heading mb-4">Contactanos</h3>
 
 								<div>
 									<a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
@@ -285,13 +283,14 @@ function cargarEliminar(id)
 
 					</div>
 
+
 					<div class="col-lg-4 mb-5 mb-lg-0">
 						<div class="mb-5">
-							<h3 class="footer-heading mb-4">Watch Video</h3>
+							<h3 class="footer-heading mb-4"> Video</h3>
 
 							<div class="block-16">
 								<figure>
-									<img th:src="@{/images/img_1.jpg}" alt="Image placeholder"
+									<img th:src="@{/imagenes/img_1.jpg}" alt="Image placeholder"
 										class="img-fluid rounded">
 									<a href="https://vimeo.com/channels/staffpicks/93951774"
 										class="play-button popup-vimeo"><span class="icon-play"></span></a>
@@ -301,19 +300,17 @@ function cargarEliminar(id)
 						</div>
 
 						<div class="mb-5">
-							<h3 class="footer-heading mb-2">Subscribe Newsletter</h3>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit
-								minima minus odio.</p>
-
+							 <h3 class="footer-heading mb-2">Suscribirse</h3>
+                               <p>Te mandamos un correo semanal con la noticias de tus equipos</p>
 							<form action="#" method="post">
 								<div class="input-group mb-3">
 									<input type="text"
 										class="form-control border-secondary text-white bg-transparent"
-										placeholder="Enter Email" aria-label="Enter Email"
+										placeholder="Enter Email" aria-label="Correo Electronico"
 										aria-describedby="button-addon2">
 									<div class="input-group-append">
 										<button class="btn btn-primary" type="button"
-											id="button-addon2">Send</button>
+											id="button-addon2">Enviar</button>
 									</div>
 								</div>
 							</form>
@@ -327,16 +324,12 @@ function cargarEliminar(id)
 					<div class="col-md-12">
 						<p>
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-							Copyright &copy;
-							<script data-cfasync="false"
-								src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-							<script>
-								document.write(new Date().getFullYear());
-							</script>
-							All rights reserved | This template is made with <i
-								class="icon-heart-o" aria-hidden="true"></i> by <a
-								href="https://colorlib.com" target="_blank">Colorlib</a>
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+					            Thor-neos &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+					                
+					            </script><script>document.write(new Date().getFullYear());</script> Todos los derechos reservados. | 
+					            Torneos. </i>by <a href="https://colorlib.com" target="_blank" >La información contenida en Thors, 
+					                no puede ser publicada, difundida, reescrita o redistribuída sin autorización previa y por escrito de Thors.com</a>
+					            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 						</p>
 					</div>
 
@@ -494,15 +487,16 @@ function cargarEliminar(id)
 					<form action="/torneo/delete" method="GET" name="frmTorneoEliminar">
 						<div class="form-row">
 							<div class="form-column col-md-8 mb-8">
-								<div class="form-group required">
-								<span class="icon-warning"></span>
-									<h2 style="align: center;">¿Está seguro de eliminar el registro seleccionado?</h2>
+								<div class="form-group required" style="text-align: center;">
+								<span class="icon-warning" ></span>
+									<h2>¿Está seguro de eliminar el registro seleccionado?</h2>
+									<p class="text-warning"><small>Esta acción no podrá deshacerse en el futuro.</small> </p>
 									<input type="hidden" name="id">								
 								</div>
 							</div>	
 						</div>
-						<div class="modal-footer">
-							<input type="submit" class="btn btn-primary" name="btnEnviar" value="Aceptar">&nbsp&nbsp
+						<div class="modal-footer" style="margin-left: 20%;">
+							<input type="submit" class="btn btn-danger" name="btnEnviar" value="Aceptar">&nbsp&nbsp
 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 						</div>
 						
