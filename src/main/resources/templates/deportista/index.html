@@ -25,6 +25,7 @@
 	    <td th:text=${item.fechaNac}></td>
 	    <td th:text=${item.peso}></td>
 	    <td>
+	    	<a th:href="@{detalle/}+${item.id}">Detalle</a>
 	    	<a th:href="@{update/}+${item.id}">Editar</a>
 	    	<a th:href="@{delete/}+${item.id}">Eliminar</a>
 	    </td>
