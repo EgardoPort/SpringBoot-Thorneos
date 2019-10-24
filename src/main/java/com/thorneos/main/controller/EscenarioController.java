@@ -67,8 +67,9 @@ public class EscenarioController {
 		return "escenario/form";
 	}
 
-	@GetMapping("delete/{id}")
-	public String eliminar(@PathVariable Integer id) {
+	@GetMapping("delete")
+	public String eliminar(HttpServletRequest req) {
+		int id = Integer.parseInt(req.getParameter("id"));
 		iEscenarioRepository.deleteById(id);
 		return "redirect:/escenario/index";
 
