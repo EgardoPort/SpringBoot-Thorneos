@@ -27,6 +27,8 @@
 		
 		<link rel="stylesheet" href="/static/css/style.css"
 			th:href="@{/css/style.css}">
+			<script src="/static/js/jquery-3.3.1.min.js"
+				th:src="@{/js/jquery-3.3.1.min.js}"></script>
 		
 		<!--<link rel="stylesheet" type="text/css" href="/static/sweetalert-master/dist/sweetalert.css" th:href="@{/sweetalert-master/dist/sweetalert.css}">-->
 		
@@ -123,26 +125,34 @@
 			 </header>
 
 
+				<input type="hidden" id="id_equipo" th:value="${idEquipo}" />
+	<table>
+		<tr>
+			<td>Deportista:</td>
+			<td><select name="id_deportista" id="id_deportista" th:value="${dEquipo.id_deportista}">
+					<option th:each="d:${deportistas}" th:value="${d.id}" th:text="${d.nombre}+' '+${d.apellido}" />
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td><button id="guardar">Guardar</button></td>
+		</tr>
+	</table>
 
-				</br></br>
-				<h1>Lista de deportistas en el equipo</h1>
-				<hr>
-				<a th:href="@{agregar}" >Agregar deportista</a>
-				<br>
-				<table border="1">
-					<tr>
-						<th>Nombre</th>
-						<th>Acción</th>
-					</tr>
-					<tr th:each="item:${lista}">
-						<td th:text=${item.nombre}></td>
-						<td>
-						<a th:href="@{update/}+${item.id}">Editar</a>
-							<a th:href="@{delete/}+${item.id}">Eliminar</a>
-						</td>
-					</tr>
-				</table>
-				</br></br>
+	<table border="1">
+		<tr>
+			<th>Jugador</th>
+			<th>Acción</th>
+		</tr>
+		<tr th:each="item:${list}">
+			<td th:text=${item.id_deportista.nombre}></td>
+			<td>
+					<input type="hidden" name="id_deportista" class="id_deportista" id="id_deportista1" th:value="${item.id}" />
+					<button id="eliminar" class="eliminar">Eliminar</button>
+			</td>
+		</tr>
+	</table>
+				
 				
 				<footer class="site-footer border-top">
 		      <div class="container">
@@ -284,5 +294,53 @@
 					</div>
 				</footer>
 			</div>
+			
+			<script type="text/javascript">
+		
+			$('#guardar').on('click', function() {
+				var id_deportista = $('#id_deportista').val();
+				var id_equipo = $('#id_equipo').val();
+
+				$.ajax({
+
+					type : 'POST',
+					url : '/equipo/guardarDe',
+					dataType : 'json',
+					data : {
+						id_deportista : id_deportista,
+						id_equipo : id_equipo
+					},
+					success : function(data) {
+						//console.log(data);
+						//window.location.reload("/equipo/detalle/"+id_equipo);
+					},
+					error : function(error) {
+						window.location.reload();
+					}
+				});
+			});
+			</script>
+			
+			<script type="text/javascript">
+			$('.eliminar').on('click', function (){
+			    var filaPpal = $(this).closest('tr');
+			    var id_deport = $(filaPpal).find(".id_deportista").val();
+
+			    $.ajax({
+
+					type : 'GET',
+					url : '/equipo/deleteDe',
+					dataType : 'json',
+					data : { id_deportista1 : id_deport },
+					success : function(data) {
+						//console.log(data);
+						//window.location.reload("/equipo/detalle/"+id_equipo);
+					},
+					error : function(error) {
+						window.location.reload();
+					}
+				});
+			});
+	</script>
 </body>
 </html>

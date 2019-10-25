@@ -57,7 +57,7 @@ function cargarEliminar(id)
 </script>
 </head>
 <body>
-	<div class="site-wrap">
+	div class="site-wrap">
 			
 					<div class="site-mobile-menu">
 						<div class="site-mobile-menu-header">
@@ -135,7 +135,22 @@ function cargarEliminar(id)
 							</div>
 						</nav>
 					</header>
+						<table border="1">
+		<tr>
+			<th>Código</th>
 		
+			<th colspan="2">Acción</th>
+		</tr>
+		<tr th:each="item:${lista}">
+			<td th:text=${item.nombre}></td>
+			<td th:text=${item.num_integrantes}></td>			
+			<td>
+				<a th:href="@{update/} + ${item.id}">Editar</a>
+				<a th:href="@{delete/} + ${item.id}">Eliminar</a>
+				<a th:href="@{detalle/} + ${item.id}">Detalle</a>
+			</td>
+		</tr>
+	</table>
 		
 				      <div class="container">
 				      <div class="row">
@@ -152,9 +167,10 @@ function cargarEliminar(id)
 				                  <li class="mb-4" th:each="item:${lista}">
 				                    <a href="#" class="d-flex">
 				                      <figure class="image mr-4">
-				                        <img th:src="@{/imagenes/texans.png}" alt="" class="img-fluid">
+				                        <img th:src="@{/images/texans.png}" alt="" class="img-fluid">
 				                      </figure>
 				                      <div class="text">
+				                      
 				                      <button class="btn btn-info btn-sm" style="float: right; padding-left: 16px; padding-right: 16px;" id="editarEquipo" th:attr="onclick=|cargar('${item.id}', '${item.nombre}', '${item.num_integrantes}')|">Editar</button><br>
 				                        <h4 class="text-black" th:text=${item.nombre}></h4>
 				                        
@@ -162,7 +178,9 @@ function cargarEliminar(id)
 										<a id="eliminarTorneo" class="pl-0 pr-3" title="Eliminar" style="float: right;" ><span class="icon-remove"></span></a>-->
 				                        <p class="text-black" style="float: left;">Integrantes: &nbsp;</p><p style="float: left;" th:text=${item.num_integrantes}></p>&nbsp; &nbsp;&nbsp; &nbsp;
 				                        
-				                        <button class="btn btn-danger btn-sm" style="float: right;" th:attr="onclick=|cargarEliminar('${item.id}')|" id="eliminarEquipo"> Eliminar</button>
+				                        <button class="btn btn-danger btn-sm" style="float: right;" th:attr="onclick=|cargarEliminar('${item.id}')|" id="eliminarEquipo"> Eliminar</button>&nbsp; &nbsp;&nbsp; &nbsp;
+				                        <button class="btn btn-info btn-sm" style="float: right;"  id="detalleEquipo"> Detalle</button>
+				                        
 				                      </div>
 				                      
 				                    </a>
@@ -470,5 +488,6 @@ function cargarEliminar(id)
 					});
 				});
 			</script>
+			
 </body>
 </html>
