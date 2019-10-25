@@ -42,8 +42,9 @@ public class DeportistaController {
 		return "deportista/index";
 	}
 
-	@GetMapping("delete/{id}")
-	public String delete(@PathVariable Integer id) {
+	@GetMapping("delete")
+	public String delete(HttpServletRequest req) {
+		int id = Integer.parseInt(req.getParameter("id"));
 		iDeportista.deleteById(id);
 		return "redirect:/deportista/index";
 	}
@@ -94,6 +95,7 @@ public class DeportistaController {
 		List<DetalleDeportista> list = DDepoService.getDisciplinaByIdDeportista(deportista.getId());
 		model.addAttribute("list", list);
 		model.addAttribute("idDeportista", deportista.getId());
+		model.addAttribute("nombre", deportista.getNombre());
 		return "deportista/detalle";
 		
 		
