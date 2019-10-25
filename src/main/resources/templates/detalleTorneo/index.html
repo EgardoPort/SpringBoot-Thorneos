@@ -26,6 +26,9 @@
 	
 	<link rel="stylesheet" href="/static/css/style.css"
 		th:href="@{/css/style.css}">
+		
+	<script src="/static/js/jquery-3.3.1.min.js"
+			th:src="@{/js/jquery-3.3.1.min.js}"></script>
 	
 	<!--<link rel="stylesheet" type="text/css" href="/static/sweetalert-master/dist/sweetalert.css" th:href="@{/sweetalert-master/dist/sweetalert.css}">-->
 	
@@ -124,24 +127,34 @@
 			 
 
                      </br> </br>
-					<h1>Lista de equipos en el torneo </h1>
-					<hr>
-					<a th:href="@{agregar}" >Agregar equipo</a>
-					<br>
-					<table border="1">
-						<tr>
-							<th>Equipo</th>
-							<th>Acción</th>
-						</tr>
-						<tr th:each="item:${lista}">
-							<td th:text=${item.id_equipo.nombre}></td>
-							<td>
-							<a th:href="@{update/}+${item.id}">Editar</a>
-								<a th:href="@{delete/}+${item.id}">Eliminar</a>
-							</td>
-						</tr>
-					</table>
-					</br> </br>
+			<h1>Lista de equipos en el torneo </h1>
+			<input type="hidden" id="id_torneo" th:value="${idTorneo}" />
+			<table>
+				<tr>
+					<td>Equipo:</td>
+					<td><select name="id_equipo" id="id_equipo" th:value="${dEquipo.id}">
+							<option th:each="d:${equipos}" th:value="${d.id}" th:text="${d.nombre}" />
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td><button id="guardar">Guardar</button></td>
+				</tr>
+			</table>
+		
+			<table border="1">
+				<tr>
+					<th>Equipos</th>
+					<th>Acción</th>
+				</tr>
+				<tr th:each="item:${list}">
+					<td th:text=${item.id_equipo.nombre}></td>
+					<td>
+						<input type="hidden" name="id_equipos" class="id_equipo" th:value="${item.id}" />
+						<button class="eliminar">Eliminar</button>
+					</td>
+				</tr>
+			</table>
 					
 					<footer class="site-footer border-top">
 		      <div class="container">
@@ -283,5 +296,52 @@
 					</div>
 				</footer>
 			</div>
+			<script type="text/javascript">
+		
+			$('#guardar').on('click', function() {
+				var id_torneo = $('#id_torneo').val();
+				var id_equipo = $('#id_equipo').val();
+
+				$.ajax({
+
+					type : 'POST',
+					url : '/torneo/guardarEq',
+					dataType : 'json',
+					data : {
+						id_torneo : id_torneo,
+						id_equipo : id_equipo
+					},
+					success : function(data) {
+						//console.log(data);
+						//window.location.reload("/equipo/detalle/"+id_equipo);
+					},
+					error : function(error) {
+						window.location.reload();
+					}
+				});
+			});
+			</script>
+			
+			<script type="text/javascript">
+			$('.eliminar').on('click', function (){
+			    var filaPpal = $(this).closest('tr');
+			    var id_equipo = $(filaPpal).find(".id_equipo").val();
+
+			    $.ajax({
+
+					type : 'GET',
+					url : '/torneo/deleteEq',
+					dataType : 'json',
+					data : { id_equipo : id_equipo },
+					success : function(data) {
+						//console.log(data);
+						//window.location.reload("/equipo/detalle/"+id_equipo);
+					},
+					error : function(error) {
+						window.location.reload();
+					}
+				});
+			});
+	</script>
 </body>
 </html>

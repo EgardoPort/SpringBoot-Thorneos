@@ -74,5 +74,7 @@ public class DetalleEquipoService {
 		return iDeportista.findById(id).get();
 	}
 	
-	
+	public List<DetalleEquipo> getDeportistaByIdEquipo(Integer id){
+		return iDetalleEquipo.findById_equipo(id);
+	}
 }

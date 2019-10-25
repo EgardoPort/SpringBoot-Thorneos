@@ -2,10 +2,8 @@ package com.thorneos.main.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -17,9 +15,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.thorneos.main.entities.DetalleEquipo;
+import com.thorneos.main.entities.DetalleTorneo;
 import com.thorneos.main.entities.Disciplina;
+import com.thorneos.main.entities.Equipo;
 import com.thorneos.main.entities.Persona;
 import com.thorneos.main.entities.Torneo;
+import com.thorneos.main.repository.IEquipoRepository;
+import com.thorneos.main.service.DetalleTorneoService;
 import com.thorneos.main.service.TorneoService;
 
 @Controller
@@ -28,6 +31,11 @@ public class TorneoController {
 	@Autowired
 	TorneoService iTorneo;
 
+	@Autowired
+	IEquipoRepository IEquipo;
+	
+	@Autowired
+	DetalleTorneoService detalleTorneoService;
 	@GetMapping("index")
 	public String listar(Model model) {
 		List<Torneo> lista = (List<Torneo>) iTorneo.findAll();
@@ -88,7 +96,44 @@ public class TorneoController {
 		return "redirect:/torneo/index";
 	}
 
+	@GetMapping("detalle/{id}")
+	public String detalle(@PathVariable Integer id, Model model) {
 
+		Torneo torneo =  iTorneo.findById(id);
+		
+		List<Equipo> lista = (List<Equipo>) IEquipo.findAll();
+		model.addAttribute("equipos", lista);
+		model.addAttribute("dEquipo", new DetalleEquipo());
+		
+		List<DetalleTorneo> list = detalleTorneoService.getTorneoById(torneo.getId());
+		model.addAttribute("list", list);
+		model.addAttribute("idTorneo", torneo.getId());
+		return ("detalleTorneo/index");
+	}
 	
-
+	@PostMapping("guardarEq")
+	public void guardarEq(HttpServletRequest req, Model model)
+	{
+		DetalleTorneo detalleTorneo = new DetalleTorneo();
+		int id_torneo = Integer.parseInt(req.getParameter("id_torneo")); 
+		int id_equipo = Integer.parseInt(req.getParameter("id_equipo"));
+		
+		Torneo torneo = detalleTorneoService.findTorneoById(id_torneo);
+		Equipo equipo = detalleTorneoService.findEquipoById(id_equipo);
+		
+		//Asignar valores a la entidad 
+		
+		detalleTorneo.setId_equipo(equipo);
+		
+		detalleTorneo.setId_torneo(torneo);
+		detalleTorneo.setId_equipo(equipo); 
+		
+		detalleTorneoService.save(detalleTorneo);
+	}
+	
+	@GetMapping("deleteEq")
+	public void deleteEq(HttpServletRequest req) {
+		int id = Integer.parseInt(req.getParameter("id_equipo"));
+		detalleTorneoService.deleteById(id);
+	}
 }
