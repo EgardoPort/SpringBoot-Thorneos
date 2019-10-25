@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Detalle deportista</title>
+<title>Torneo</title>
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -27,8 +27,6 @@
 
 <link rel="stylesheet" href="/static/css/style.css"
 	th:href="@{/css/style.css}">
-<script src="/static/js/jquery-3.3.1.min.js"
-	th:src="@{/js/jquery-3.3.1.min.js}"></script>
 
 <!--<link rel="stylesheet" type="text/css" href="/static/sweetalert-master/dist/sweetalert.css" th:href="@{/sweetalert-master/dist/sweetalert.css}">-->
 
@@ -41,6 +39,22 @@
 	box-shadow: 2px 2px 5px #999;
 }
 </style>
+<script type="text/javascript">
+	function cargar(id, nombre, fechaInicio, fechaFin, idDisciplina, idPersona,
+			cantidadEquipos) {
+		document.frmTorneoEdit.id.value = id;
+		document.frmTorneoEdit.nombre.value = nombre;
+		document.frmTorneoEdit.fecha_inicio.value = fechaInicio;
+		document.frmTorneoEdit.fecha_fin.value = fechaFin;
+		document.frmTorneoEdit.id_disciplina.value = idDisciplina;
+		document.frmTorneoEdit.id_persona.value = idPersona;
+		document.frmTorneoEdit.cantidad_equipos.value = cantidadEquipos;
+	}
+
+	function cargarEliminar(id) {
+		document.frmTorneoEliminar.id.value = id;
+	}
+</script>
 </head>
 <body>
 	<div class="site-wrap">
@@ -48,7 +62,7 @@
 		<div class="site-mobile-menu">
 			<div class="site-mobile-menu-header">
 				<div class="site-mobile-menu-logo">
-					<a th:href="@{/}"><img th:src="@{/imagenes/lll.png}"
+					<a href="torneo/index"><img th:src="@{/imagenes/ll.jpg}"
 						alt="Image"></a>
 				</div>
 				<div class="site-mobile-menu-close mt-3">
@@ -90,7 +104,7 @@
 				role="navigation">
 				<div class="container position-relative">
 					<div class="site-logo">
-						<a th:href="@{/}"><img th:src="@{/imagenes/lll.png}" alt=""></a>
+						<a href="index"><img th:src="@{/imagenes/lll.png}" alt=""></a>
 					</div>
 
 					<div class="d-inline-block d-md-none ml-md-0 mr-auto py-3">
@@ -119,11 +133,10 @@
 
 						<li><a th:href="@{/persona/index}">Usuarios</a></li>
 						<li><a th:href="@{//index}">Perfil</a></li>
-					</ul>
+						</ul>
 				</div>
 			</nav>
 		</header>
-
 		<div class="site-section bg-light" data-aos="fade-up">
 			<div class="container">
 				<div class="row">
@@ -136,13 +149,12 @@
 						<div class="p-3 p-lg-5 border">
 							<div class="form-group row">
 								<div class="col-md-6">
-									<label for="c_fname" class="text-black">Equipos <span
+									<label for="c_fname" class="text-black">Disciplinas <span
 										class="text-danger">*</span></label> <input type="hidden"
-										id="id_equipo" th:value="${idEquipo}" /> <select
-										name="id_deportista" id="id_deportista"
-										th:value="${dEquipo.id_deportista}" class="form-control">
-										<option th:each="d:${deportistas}" th:value="${d.id}"
-											th:text="${d.nombre}+' '+${d.apellido}" />
+										id="id_deportista" th:value="${idDeportista}" /> <select
+										name="id_disciplina" id="id_disciplina" class="form-control">
+										<option th:each="d:${disciplinas}" th:value="${d.id}"
+											th:text="${d.nombre}" />
 									</select>
 								</div>
 							</div>
@@ -155,26 +167,29 @@
 					</div>
 
 					<div class="col-md-5">
-						<div class="p-4 border mb-3 bg-white">
-							<div class="alert alert-warning alert-dismissible fade show"
-								th:each="item:${list}" role="alert">
-								<table cellspacing="4">
-									<tr>
-										<td th:text=${item.id_deportista.nombre}></td>
-										<td><input type="hidden" name="id_deportista"
-											class="id_deportista" id="id_deportista1"
-											th:value="${item.id}" />&nbsp;&nbsp;
-											<button id="eliminar" class="btn btn-warning eliminar"
-												style="margin-right: -100%;">Eliminar</button></td>
-									</tr>
-								</table>
+						<div class="p-4 border mb-3 bg-white" >
+							<div class="alert alert-warning alert-dismissible fade show" th:each="item:${list}"
+								role="alert">
+								<p class="mb-0" th:text=${item.id_disciplina.nombre}></p>
+								<form action="/deportista/deletedetalle" method="GET">
+									<input type="hidden" name="id" th:value="${item.id}"> <input
+										type="submit" value="Eliminar">
+								</form>
 							</div>
 						</div>
 					</div>
+					<div class="alert alert-warning alert-dismissible fade show"
+						role="alert">
+						<strong></strong>
+						<button type="button" class="close" data-dismiss="alert"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
 				</div>
 			</div>
 		</div>
-
 		<footer class="site-footer border-top">
 			<div class="container">
 				<div class="row">
@@ -323,7 +338,6 @@
 			</div>
 		</footer>
 	</div>
-
 	<script src="/static/js/jquery-3.3.1.min.js"
 		th:src="@{/js/jquery-3.3.1.min.js}"></script>
 	<script src="/static/js/jquery-migrate-3.0.1.min.js"
@@ -346,50 +360,31 @@
 	<script src="/static/js/main.js" th:src="@{/js/main.js}"></script>
 
 	<script type="text/javascript">
-		$('#guardar').on('click', function() {
-			var id_deportista = $('#id_deportista').val();
-			var id_equipo = $('#id_equipo').val();
+		$(document).ready(function() {
 
-			$.ajax({
+			$('#guardar').on('click', function() {
 
-				type : 'POST',
-				url : '/equipo/guardarDe',
-				dataType : 'json',
-				data : {
-					id_deportista : id_deportista,
-					id_equipo : id_equipo
-				},
-				success : function(data) {
-					//console.log(data);
-					//window.location.reload("/equipo/detalle/"+id_equipo);
-				},
-				error : function(error) {
-					window.location.reload();
-				}
-			});
-		});
-	</script>
+				var id_deportista = $('#id_deportista').val();
+				var id_disciplina = $('#id_disciplina').val();
 
-	<script type="text/javascript">
-		$('.eliminar').on('click', function() {
-			var filaPpal = $(this).closest('tr');
-			var id_deport = $(filaPpal).find(".id_deportista").val();
+				$.ajax({
+					type : 'POST',
+					url : '/deportista/guardarDe',
+					dataType : 'json',
+					data : {
+						idDeportista : id_deportista,
+						idDisciplina : id_disciplina
+					},
+					success : function(data) {
+						console.log(data);
+						//window.location.reload("/deportista/detalle/"+id_disciplina);
+					},
+					error : function(error) {
+						window.location.reload();
+						//console.log(error);
+					}
+				});
 
-			$.ajax({
-
-				type : 'GET',
-				url : '/equipo/deleteDe',
-				dataType : 'json',
-				data : {
-					id_deportista1 : id_deport
-				},
-				success : function(data) {
-					//console.log(data);
-					//window.location.reload("/equipo/detalle/"+id_equipo);
-				},
-				error : function(error) {
-					window.location.reload();
-				}
 			});
 		});
 	</script>
