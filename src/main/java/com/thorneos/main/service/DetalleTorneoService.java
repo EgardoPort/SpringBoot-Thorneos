@@ -25,53 +25,47 @@ public class DetalleTorneoService {
 	@Autowired
 	ITorneoRepository iTorneo;
 	
-	public List<DetalleTorneo> findAll()
-	{
+	public List<DetalleTorneo> findAll(){
 		return (List<DetalleTorneo>) iDetalleTorneo.findAll();
 	}
 	
-	public DetalleTorneo findById(Integer id)
-	{
+	public DetalleTorneo findById(Integer id){
 		return iDetalleTorneo.findById(id).get();
 	}
 	
-	public void save(DetalleTorneo detalleTorneo)
-	{
+	public void save(DetalleTorneo detalleTorneo){
 		iDetalleTorneo.save(detalleTorneo);
 	}
 	
-	public void deleteById(Integer id)
-	{
+	public void deleteById(Integer id){
 		iDetalleTorneo.deleteById(id);
 	}
 	
-	public void delete(Integer id)
-	{
+	public void delete(Integer id){
 		iDetalleTorneo.delete(iDetalleTorneo.findById(id).get());
 	}
 	
 	//Método de la entidad equipo
 	
-	public List<Equipo> getEquipo()
-	{
+	public List<Equipo> getEquipo(){
 		return (List<Equipo>) iEquipo.findAll();
 	}
 	
-	public Equipo findEquipoById(Integer id)
-	{
+	public Equipo findEquipoById(Integer id){
 		return iEquipo.findById(id).get();
 	}
 	
 	//Método de la entidad Torneo
 	
-	public List<Torneo> getTorneo()
-	{
+	public List<Torneo> getTorneo(){
 		return (List<Torneo>) iTorneo.findAll();
 	}
 	
-	public Torneo findTorneoById(Integer id)
-	{
+	public Torneo findTorneoById(Integer id){
 		return iTorneo.findById(id).get();
 	}
 	
+	public List<DetalleTorneo> getTorneoById(Integer id){
+		return iDetalleTorneo.findById_Torneo(id);
+	}
 }

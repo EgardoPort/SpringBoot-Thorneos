@@ -169,7 +169,7 @@
 											<div class="text-inner">
 												<h2 class="heading mb-3">
 													<a href="#" class="text-black" th:text=${t.nombre}></a>
-													<a href="#" class="pl-0 pr-3" title="Equipos del torneo"
+													<a th:href="@{/torneo/detalle/}+${t.id}" class="pl-0 pr-3" title="Equipos del torneo"
 														style="float: right;"><span class="icon-info"></span></a>
 													<a id="eliminarTorneo" class="pl-0 pr-3" title="Eliminar"
 														style="float: right;" th:attr="onclick=|cargarEliminar('${t.id}')|"><span class="icon-remove"></span></a>
