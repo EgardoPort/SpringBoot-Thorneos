@@ -167,8 +167,8 @@
 					</div>
 
 					<div class="col-md-5">
-						<div class="p-4 border mb-3 bg-white" th:each="item:${list}">
-							<div class="alert alert-warning alert-dismissible fade show"
+						<div class="p-4 border mb-3 bg-white" >
+							<div class="alert alert-warning alert-dismissible fade show" th:each="item:${list}"
 								role="alert">
 								<p class="mb-0" th:text=${item.id_disciplina.nombre}></p>
 								<form action="/deportista/deletedetalle" method="GET">
@@ -190,23 +190,6 @@
 				</div>
 			</div>
 		</div>
-
-
-		<table border="1">
-			<tr>
-				<th>Disciplina</th>
-				<th colspan="2">Opciones</th>
-			</tr>
-			<tr th:each="item:${list}">
-				<td th:text=${item.id_disciplina.nombre}></td>
-				<td>
-					<form action="/deportista/deletedetalle" method="GET">
-						<input type="hidden" name="id" th:value="${item.id}"> <input
-							type="submit" value="Eliminar">
-					</form>
-				</td>
-			</tr>
-		</table>
 		<footer class="site-footer border-top">
 			<div class="container">
 				<div class="row">
