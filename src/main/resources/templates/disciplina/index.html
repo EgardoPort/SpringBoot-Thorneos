@@ -41,6 +41,16 @@
 		
 		
 		</style>
+		
+		<script type="text/javascript">
+		function cargarEliminar(id)
+		{
+			document.frmDisciplinaEliminar.id.value = id;
+		}
+
+		
+		</script>
+		
 	</head>
 	<body>
 		<div class="site-wrap">
@@ -128,24 +138,19 @@
 								<div class="col-md-12 text-center">
 									<h2 class="text-black">Disciplinas</h2>
 								</div>
+								<button class="btn btn-dark" id="nuevaDisciplina">Nuevo</button>
 							</div>
-								<a th:href="@{agregar}" >Agregar participante</a>
-								<br>
-								<table class="table table-striped">
-									<tr>
-										<th>Nombre</th>
-										<th>Acción</th>
-									</tr>
-									<tr th:each="item:${lista}">
-										<td th:text=${item.nombre}></td>
-										<td>
-										<a th:href="@{update/}+${item.id}">Editar</a>
-											<a th:href="@{delete/}+${item.id}">Eliminar</a>
-										</td>
-									</tr>
-								</table>
+							<div class="col-md-5" >
+					            <div class="p-4 border mb-3 bg-light" style="aling-items: center;">
+					            
+					            <div class="alert alert-danger" th:each="item:${lista}" role="alert" >
+					            <p th:text=${item.nombre}></p>
+					            	<a id="eliminarDisciplina" class="pl-0 pr-3" title="Eliminar" th:attr="onclick=|cargarEliminar('${item.id}')|" style="float: right;"><span class="icon-remove"></span></a>
 								</div>
-							</div>
+					          </div>							
+						    </div>
+						</div>
+					</div >
 		
 				<footer class="site-footer border-top">
 			      <div class="container">
@@ -287,5 +292,109 @@
 						</div>
 					</footer>
 				</div>
+				
+				<!-- Modal -->
+			<div class="modal fade" id="modalInsertar" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Nueva disciplina</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="/disciplina/guardar" method="POST">
+								<div class="form-row">
+									<div class="form-column col-md-8 mb-8">
+										<div class="form-group required">
+											<label class="control-label">Nombre</label>
+											<input type="hidden" name="id">
+											<input type="text" name="nombre" class="form-control">
+										</div>
+									</div>							
+								</div>
+								<div class="modal-footer">
+									<input style="margin-right: 40%;" type="submit" class="btn btn-primary" name="btnEnviar" value="Guardar">
+								</div>
+								
+							</form>
+						</div>
+		
+					</div>
+				</div>
+			</div>
+				
+				<!-- Modal -->
+			<div class="modal fade" id="modalEliminarDisciplina" tabindex="-1" role="dialog"
+				aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-body">
+							<form action="/disciplina/delete" method="GET" name="frmDisciplinaEliminar">
+								<div class="form-row">
+									<div class="form-column col-md-8 mb-8">
+										<div class="form-group required" style="text-align: center;">
+										<span class="icon-warning" ></span>
+											<h2>¿Está seguro de eliminar el registro seleccionado?</h2>
+											<p class="text-warning"><small>Esta acción no podrá deshacerse en el futuro.</small> </p>
+											<input type="hidden" name="id">								
+										</div>
+									</div>	
+								</div>
+								<div class="modal-footer" style="margin-left: 20%;">
+									<input type="submit" class="btn btn-danger" name="btnEnviar" value="Aceptar">&nbsp&nbsp
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+								</div>
+								
+							</form>
+						</div>
+		
+					</div>
+				</div>
+			</div>
+				
+				<script src="/static/js/jquery-3.3.1.min.js"
+				th:src="@{/js/jquery-3.3.1.min.js}"></script>
+			<script src="/static/js/jquery-migrate-3.0.1.min.js"
+				th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+			<script src="/static/js/jquery-ui.js" th:src="@{/js/jquery-ui.js}"></script>
+			<script src="/static/js/popper.min.js" th:src="@{/js/popper.min.js}"></script>
+			<script src="/static/js/bootstrap.min.js"
+				th:src="@{/js/bootstrap.min.js}"></script>
+			<script src="/static/js/owl.carousel.min.js"
+				th:src="@{/js/owl.carousel.min.js}"></script>
+			<script src="/static/js/jquery.stellar.min.js"
+				th:src="@{/js/jquery.stellar.min.js}"></script>
+			<script src="/static/js/jquery.countdown.min.js"
+				th:src="@{/js/jquery.countdown.min.js}"></script>
+			<script src="/static/js/jquery.magnific-popup.min.js"
+				th:src="@{/js/jquery.magnific-popup.min.js}"></script>
+			<script src="/static/js/aos.js" th:src="@{/js/aos.js}"></script>
+		
+
+			<script src="/static/js/main.js" th:src="@{/js/main.js}"></script>
+		
+			<script type="text/javascript">
+				$(document).on('click', '#nuevaDisciplina', function() {
+		
+					$('#modalInsertar').modal({
+						backdrop : 'static',
+						keyboard : false
+					});
+				});
+				
+				$(document).on("click", "#eliminarDisciplina", function() {
+		
+					$("#modalEliminarDisciplina").modal({
+						backdrop : 'static',
+						keyboard : false
+					});
+				});
+				
+
+			</script>
 	</body>
 	</html>

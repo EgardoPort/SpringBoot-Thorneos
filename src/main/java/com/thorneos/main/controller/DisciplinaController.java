@@ -30,10 +30,10 @@ public class DisciplinaController {
 		return "disciplina/index";
 	}
 	
-	@GetMapping(value = "delete/{id}")
-	public String delete(@PathVariable("id") int id)
+	@GetMapping(value = "delete")
+	public String delete(HttpServletRequest req)
 	{
-		
+		int id = Integer.parseInt(req.getParameter("id"));
 		iDisciplina.deleteById(id);
 		return "redirect:/disciplina/index";
 	}
